@@ -39,12 +39,26 @@ vector <ofPoint> ofApp::loadPoints(string file) {
 
 //--------------------------------------------------------------
 void ofApp::update(){
-
+     box2d.update();
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-
+  ofSetHexColor(0x444342);
+	ofFill();
+	for (int i=0; i<polyShapes.size(); i++) {
+		polyShapes[i]->draw();
+	}
+  // 
+  // string info = "Draw a shape with the mouse\n";
+	// info += "Press 1 to add some circles\n";
+	// info += "Press c to clear everything\n";
+	// info += "Press t to break object up into triangles/convex poly: "+string(breakupIntoTriangles?"true":"false")+"\n";
+  //   info += "Total Bodies: "+ofToString(box2d.getBodyCount())+"\n";
+	// info += "Total Joints: "+ofToString(box2d.getJointCount())+"\n\n";
+	// info += "FPS: "+ofToString(ofGetFrameRate())+"\n";
+  //   ofSetHexColor(0x444342);
+	// ofDrawBitmapString(info, 10, 15);
 }
 
 //--------------------------------------------------------------
