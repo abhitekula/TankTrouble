@@ -2,7 +2,39 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+  ofDisableAntiAliasing();
+	ofBackgroundHex(0xfdefc2);
+	ofSetLogLevel(OF_LOG_NOTICE);
+	ofSetVerticalSync(true);
 
+	// Box2d
+	box2d.init();
+	box2d.setGravity(0, 10);
+	box2d.createGround();
+	box2d.setFPS(30.0);
+
+
+    breakupIntoTriangles = true;
+
+	// load the shape we saved...
+	vector <ofPoint> pts = loadPoints("tank.dat");
+    shared_ptr<ofxBox2dPolygon> poly = shared_ptr<ofxBox2dPolygon>(new ofxBox2dPolygon);
+    poly->addVertices(pts);
+    poly->setPhysics(1.0, 0.3, 0.3);
+    poly->triangulatePoly();
+    poly->create(box2d.getWorld());
+	polyShapes.push_back(poly);
+}
+
+vector <ofPoint> ofApp::loadPoints(string file) {
+    vector <ofPoint> pts;
+    vector <string>  ptsStr = ofSplitString(ofBufferFromFile(file).getText(), ",");
+    for (int i=0; i<ptsStr.size(); i+=2) {
+        float x = ofToFloat(ptsStr[i]);
+        float y = ofToFloat(ptsStr[i+1]);
+        pts.push_back(ofPoint(x, y));
+    }
+	return pts;
 }
 
 //--------------------------------------------------------------
@@ -66,6 +98,6 @@ void ofApp::gotMessage(ofMessage msg){
 }
 
 //--------------------------------------------------------------
-void ofApp::dragEvent(ofDragInfo dragInfo){ 
+void ofApp::dragEvent(ofDragInfo dragInfo){
 
 }

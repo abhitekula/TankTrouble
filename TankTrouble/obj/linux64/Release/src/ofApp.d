@@ -347,7 +347,58 @@ obj/linux64/Release/src/ofApp.o: \
  /home/abhi/Downloads/of_v0.9.8_linux64_release/libs/openFrameworks/video/ofVideoPlayer.h \
  /home/abhi/Downloads/of_v0.9.8_linux64_release/libs/openFrameworks/video/ofGstVideoPlayer.h \
  /home/abhi/Downloads/of_v0.9.8_linux64_release/libs/openFrameworks/3d/ofCamera.h \
- /home/abhi/Downloads/of_v0.9.8_linux64_release/libs/openFrameworks/3d/ofEasyCam.h
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/libs/openFrameworks/3d/ofEasyCam.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/src/ofxBox2d.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/src/ofxBox2dUtils.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Box2D.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Common/b2Settings.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Common/b2Draw.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Common/b2Math.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Common/b2Timer.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Collision/Shapes/b2CircleShape.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Collision/Shapes/b2Shape.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Common/b2BlockAllocator.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Collision/b2Collision.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Collision/Shapes/b2EdgeShape.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Collision/Shapes/b2ChainShape.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Collision/Shapes/b2PolygonShape.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Collision/b2BroadPhase.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Collision/b2DynamicTree.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Common/b2GrowableStack.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Collision/b2Distance.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Collision/b2TimeOfImpact.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Dynamics/b2Body.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Dynamics/b2Fixture.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Dynamics/b2WorldCallbacks.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Dynamics/b2TimeStep.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Dynamics/b2World.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Common/b2StackAllocator.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Dynamics/b2ContactManager.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Dynamics/Contacts/b2Contact.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Dynamics/Joints/b2DistanceJoint.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Dynamics/Joints/b2Joint.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Dynamics/Joints/b2FrictionJoint.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Dynamics/Joints/b2GearJoint.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Dynamics/Joints/b2MotorJoint.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Dynamics/Joints/b2MouseJoint.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Dynamics/Joints/b2PrismaticJoint.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Dynamics/Joints/b2PulleyJoint.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Dynamics/Joints/b2RevoluteJoint.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Dynamics/Joints/b2RopeJoint.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Dynamics/Joints/b2WeldJoint.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Dynamics/Joints/b2WheelJoint.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/src/ofxBox2dPolygonUtils.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/triangle/del_interface.hpp \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/triangle/dpoint.hpp \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/triangle/assert.hpp \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/src/ofxBox2dBaseShape.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/src/ofxBox2dCircle.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/src/ofxBox2dPolygon.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/src/ofxBox2dEdge.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/src/ofxBox2dRect.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/src/ofxBox2dJoint.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/src/ofxBox2dRender.h \
+ /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/src/ofxBox2dContactListener.h
 
 /home/abhi/CLionProjects/final-project-abhitekula/TankTrouble/src/ofApp.h:
 
@@ -1078,3 +1129,105 @@ obj/linux64/Release/src/ofApp.o: \
 /home/abhi/Downloads/of_v0.9.8_linux64_release/libs/openFrameworks/3d/ofCamera.h:
 
 /home/abhi/Downloads/of_v0.9.8_linux64_release/libs/openFrameworks/3d/ofEasyCam.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/src/ofxBox2d.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/src/ofxBox2dUtils.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Box2D.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Common/b2Settings.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Common/b2Draw.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Common/b2Math.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Common/b2Timer.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Collision/Shapes/b2CircleShape.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Collision/Shapes/b2Shape.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Common/b2BlockAllocator.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Collision/b2Collision.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Collision/Shapes/b2EdgeShape.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Collision/Shapes/b2ChainShape.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Collision/Shapes/b2PolygonShape.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Collision/b2BroadPhase.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Collision/b2DynamicTree.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Common/b2GrowableStack.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Collision/b2Distance.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Collision/b2TimeOfImpact.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Dynamics/b2Body.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Dynamics/b2Fixture.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Dynamics/b2WorldCallbacks.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Dynamics/b2TimeStep.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Dynamics/b2World.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Common/b2StackAllocator.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Dynamics/b2ContactManager.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Dynamics/Contacts/b2Contact.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Dynamics/Joints/b2DistanceJoint.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Dynamics/Joints/b2Joint.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Dynamics/Joints/b2FrictionJoint.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Dynamics/Joints/b2GearJoint.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Dynamics/Joints/b2MotorJoint.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Dynamics/Joints/b2MouseJoint.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Dynamics/Joints/b2PrismaticJoint.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Dynamics/Joints/b2PulleyJoint.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Dynamics/Joints/b2RevoluteJoint.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Dynamics/Joints/b2RopeJoint.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Dynamics/Joints/b2WeldJoint.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Dynamics/Joints/b2WheelJoint.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/src/ofxBox2dPolygonUtils.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/triangle/del_interface.hpp:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/triangle/dpoint.hpp:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/triangle/assert.hpp:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/src/ofxBox2dBaseShape.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/src/ofxBox2dCircle.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/src/ofxBox2dPolygon.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/src/ofxBox2dEdge.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/src/ofxBox2dRect.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/src/ofxBox2dJoint.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/src/ofxBox2dRender.h:
+
+/home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/src/ofxBox2dContactListener.h:
