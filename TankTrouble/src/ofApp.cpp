@@ -1,10 +1,9 @@
 #include "ofApp.h"
-#include "ofxBox2dBaseShape.h"
-#include "ofxBox2dPolygonUtils.h"
+#include <math.h>
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-        ofDisableAntiAliasing();
+        // ofDisableAntiAliasing();
         ofBackgroundHex(0xfdefc2);
         ofSetLogLevel(OF_LOG_NOTICE);
         ofSetVerticalSync(true);
@@ -38,7 +37,6 @@ void ofApp::setup(){
         tank->addVertices(pts);
         tank->setPhysics(1.0, 0.3, 0.3);
         tank->triangulatePoly();
-        // poly.get()->body = tank_body;
         tank->body = tank_body;
         tank->create(box2d.getWorld());
 }
@@ -56,7 +54,6 @@ vector <ofPoint> ofApp::loadPoints(string file) {
 
 //--------------------------------------------------------------
 void ofApp::update(){
-        tank->body->SetAngularVelocity( 2 );
         box2d.update();
 }
 
@@ -65,18 +62,51 @@ void ofApp::draw(){
         ofSetHexColor(0x444342);
         ofFill();
 
-        std::cout << tank->body->GetAngularVelocity() << '\n';
         tank->draw();
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
+        int upper_key = toupper(key); // Standardize on upper case
+        double angle = (tank->body->GetAngle());
+        std::cout << "Angle: " << angle << '\n';
 
+        if (upper_key == 'W') {
+                tank->body->SetLinearVelocity( b2Vec2(sin(angle), -cos(angle)) );
+        }
+
+        if (upper_key == 'S') {
+                tank->body->SetLinearVelocity( b2Vec2(-sin(angle), cos(angle)) );
+        }
+
+        if (upper_key == 'A') {
+                tank->body->SetAngularVelocity( -2 );
+        }
+
+        if (upper_key == 'D') {
+                tank->body->SetAngularVelocity( 2 );
+        }
 }
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
+        int upper_key = toupper(key); // Standardize on upper case
 
+        if (upper_key == 'W') {
+                tank->body->SetLinearVelocity( b2Vec2( 0, 0) );
+        }
+
+        if (upper_key == 'S') {
+                tank->body->SetLinearVelocity( b2Vec2( 0, 0) );
+        }
+
+        if (upper_key == 'A') {
+                tank->body->SetAngularVelocity( 0 );
+        }
+
+        if (upper_key == 'D') {
+                tank->body->SetAngularVelocity( 0 );
+        }
 }
 
 //--------------------------------------------------------------
