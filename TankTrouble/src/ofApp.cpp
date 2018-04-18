@@ -34,14 +34,13 @@ void ofApp::setup(){
         tank_body->SetAngularVelocity(10);
 
         vector <ofPoint> pts = loadPoints("tank.dat");
-        shared_ptr<ofxBox2dPolygon> poly = shared_ptr<ofxBox2dPolygon>(new ofxBox2dPolygon);
-        poly->addVertices(pts);
-        poly->setPhysics(1.0, 0.3, 0.3);
-        poly->triangulatePoly();
+        tank = new ofxBox2dPolygon();
+        tank->addVertices(pts);
+        tank->setPhysics(1.0, 0.3, 0.3);
+        tank->triangulatePoly();
         // poly.get()->body = tank_body;
-        poly.get()->body = tank_body;
-        poly->create(box2d.getWorld());
-        polyShapes.push_back(poly);
+        tank->body = tank_body;
+        tank->create(box2d.getWorld());
 }
 
 vector <ofPoint> ofApp::loadPoints(string file) {
@@ -57,7 +56,7 @@ vector <ofPoint> ofApp::loadPoints(string file) {
 
 //--------------------------------------------------------------
 void ofApp::update(){
-        polyShapes[0].get()->body->SetAngularVelocity( 2 );
+        tank->body->SetAngularVelocity( 2 );
         box2d.update();
 }
 
@@ -66,10 +65,8 @@ void ofApp::draw(){
         ofSetHexColor(0x444342);
         ofFill();
 
-        for (int i=0; i<polyShapes.size(); i++) {
-                std::cout << polyShapes[i].get()->body->GetAngularVelocity() << '\n';
-                polyShapes[i]->draw();
-        }
+        std::cout << tank->body->GetAngularVelocity() << '\n';
+        tank->draw();
 }
 
 //--------------------------------------------------------------

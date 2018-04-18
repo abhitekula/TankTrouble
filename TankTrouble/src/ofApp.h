@@ -27,5 +27,5 @@ vector <ofPoint> loadPoints(string file);
 b2Body* tank_body;
 ofPolyline shape;
 ofxBox2d box2d;
-vector <shared_ptr<ofxBox2dPolygon> > polyShapes;
+ofxBox2dPolygon* tank;
 };
