@@ -61,14 +61,15 @@ vector <ofPoint> ofApp::loadPoints(string file) {
 //--------------------------------------------------------------
 void ofApp::update() {
     box2d.update();
-    double angle = (tank->body->GetAngle());
 
     if (isKeyPressed['W']) {
+      double angle = (tank->body->GetAngle());
         tank->body->SetLinearVelocity(b2Vec2(sin(angle) * kLinearVelocity,
                                              -cos(angle) * kLinearVelocity));
     }
 
     if (isKeyPressed['S']) {
+      double angle = (tank->body->GetAngle());
         tank->body->SetLinearVelocity(b2Vec2(-sin(angle) * kLinearVelocity,
                                              cos(angle) * kLinearVelocity));
     }
@@ -79,6 +80,26 @@ void ofApp::update() {
 
     if (isKeyPressed['D']) {
         tank->body->SetAngularVelocity(kAngularVelocity);
+    }
+
+    if (isKeyPressed[OF_KEY_UP]) {
+      double angle = (tank_two->body->GetAngle());
+        tank_two->body->SetLinearVelocity(b2Vec2(sin(angle) * kLinearVelocity,
+                                             -cos(angle) * kLinearVelocity));
+    }
+
+    if (isKeyPressed[OF_KEY_DOWN]) {
+      double angle = (tank_two->body->GetAngle());
+        tank_two->body->SetLinearVelocity(b2Vec2(-sin(angle) * kLinearVelocity,
+                                             cos(angle) * kLinearVelocity));
+    }
+
+    if (isKeyPressed[OF_KEY_LEFT]) {
+        tank_two->body->SetAngularVelocity(-kAngularVelocity);
+    }
+
+    if (isKeyPressed[OF_KEY_RIGHT]) {
+        tank_two->body->SetAngularVelocity(kAngularVelocity);
     }
 }
 
@@ -94,15 +115,15 @@ void ofApp::draw() {
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key) {
     int upper_key = toupper(key); // Standardize on upper case
-    double angle = (tank->body->GetAngle());
-    std::cout << "Angle: " << angle << '\n';
 
     if (upper_key == 'W') {
         isKeyPressed[upper_key] = true;
+        double angle = (tank->body->GetAngle());
         tank->body->SetLinearVelocity(b2Vec2(sin(angle) * kLinearVelocity,
                                              -cos(angle) * kLinearVelocity));
     } else if (upper_key == 'S') {
         isKeyPressed[upper_key] = true;
+        double angle = (tank->body->GetAngle());
         tank->body->SetLinearVelocity(b2Vec2(-sin(angle) * kLinearVelocity,
                                              cos(angle) * kLinearVelocity));
     } else if (upper_key == 'A') {
@@ -111,6 +132,22 @@ void ofApp::keyPressed(int key) {
     } else if (upper_key == 'D') {
         isKeyPressed[upper_key] = true;
         tank->body->SetAngularVelocity(kAngularVelocity);
+    } else if (upper_key == OF_KEY_UP) {
+        isKeyPressed[upper_key] = true;
+        double angle = (tank_two->body->GetAngle());
+        tank_two->body->SetLinearVelocity(b2Vec2(sin(angle) * kLinearVelocity,
+                                             -cos(angle) * kLinearVelocity));
+    } else if (upper_key == OF_KEY_DOWN) {
+        isKeyPressed[upper_key] = true;
+        double angle = (tank_two->body->GetAngle());
+        tank_two->body->SetLinearVelocity(b2Vec2(-sin(angle) * kLinearVelocity,
+                                             cos(angle) * kLinearVelocity));
+    } else if (upper_key == OF_KEY_LEFT) {
+        isKeyPressed[upper_key] = true;
+        tank_two->body->SetAngularVelocity(-kAngularVelocity);
+    } else if (upper_key == OF_KEY_RIGHT) {
+        isKeyPressed[upper_key] = true;
+        tank_two->body->SetAngularVelocity(kAngularVelocity);
     }
 }
 
@@ -130,6 +167,18 @@ void ofApp::keyReleased(int key) {
     } else if (upper_key == 'D') {
         isKeyPressed[upper_key] = false;
         tank->body->SetAngularVelocity(0);
+    } else if (upper_key == OF_KEY_UP) {
+        isKeyPressed[upper_key] = false;
+        tank_two->body->SetLinearVelocity(b2Vec2(0, 0));
+    } else if (upper_key == OF_KEY_DOWN) {
+        isKeyPressed[upper_key] = false;
+        tank_two->body->SetLinearVelocity(b2Vec2(0, 0));
+    } else if (upper_key == OF_KEY_LEFT) {
+        isKeyPressed[upper_key] = false;
+        tank_two->body->SetAngularVelocity(0);
+    } else if (upper_key == OF_KEY_RIGHT) {
+        isKeyPressed[upper_key] = false;
+        tank_two->body->SetAngularVelocity(0);
     }
 }
 
