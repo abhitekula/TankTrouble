@@ -45,4 +45,6 @@ public:
     void gotMessage(ofMessage msg);
 
     vector <ofPoint> loadPoints(string file);
+
+    ofxBox2dPolygon* createTank(string file);
 };
