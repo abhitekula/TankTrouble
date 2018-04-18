@@ -18,7 +18,13 @@ void ofApp::setup() {
     tank_body_def.position.Set(100, 100);
     tank_body_def.angle = 0;
 
-    tank_body = box2d.getWorld()->CreateBody(&tank_body_def);
+    b2BodyDef tank_body_def_two;
+    tank_body_def_two.type = b2_dynamicBody;
+    tank_body_def_two.position.Set(100, 100);
+    tank_body_def_two.angle = 0;
+
+    b2Body *tank_body = box2d.getWorld()->CreateBody(&tank_body_def);
+    b2Body *tank_body_two = box2d.getWorld()->CreateBody(&tank_body_def_two);
 
     //TODO Switch to tank polygon
     b2PolygonShape rectangle;
@@ -27,17 +33,25 @@ void ofApp::setup() {
     b2FixtureDef tank_fixture;
     tank_fixture.shape = &rectangle;
     tank_fixture.density = 1;
+
     tank_body->CreateFixture(&tank_fixture);
+    tank_body_two->CreateFixture(&tank_fixture);
 
-    tank_body->SetAngularVelocity(10);
-
-    vector <ofPoint> pts = loadPoints("tank.txt");
+    vector <ofPoint> tank_pts = loadPoints("tank.txt");
     tank = new ofxBox2dPolygon();
-    tank->addVertices(pts);
+    tank->addVertices(tank_pts);
     tank->setPhysics(1.0, 0.3, 0.3);
     tank->triangulatePoly();
     tank->body = tank_body;
     tank->create(box2d.getWorld());
+
+    vector <ofPoint> tank_two_pts = loadPoints("tank2.txt");
+    tank_two = new ofxBox2dPolygon();
+    tank_two->addVertices(tank_two_pts);
+    tank_two->setPhysics(1.0, 0.3, 0.3);
+    tank_two->triangulatePoly();
+    tank_two->body = tank_body_two;
+    tank_two->create(box2d.getWorld());
 }
 
 vector <ofPoint> ofApp::loadPoints(string file) {
@@ -82,6 +96,7 @@ void ofApp::draw() {
     ofFill();
 
     tank->draw();
+    tank_two->draw();
 }
 
 //--------------------------------------------------------------

@@ -11,9 +11,9 @@ class ofApp : public ofBaseApp {
 
 private:
     bool isKeyPressed[255];
-    b2Body *tank_body;
     ofxBox2d box2d;
     ofxBox2dPolygon *tank;
+    ofxBox2dPolygon *tank_two;
 
 public:
     void setup();
