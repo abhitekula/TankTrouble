@@ -13,8 +13,8 @@ void ofApp::setup() {
   box2d.createGround();
   box2d.setFPS(30.0);
 
-  tank = createTank("tank.txt");
-  tank_two = createTank("tank2.txt");
+  tank = createTank("data/tank.txt");
+  tank_two = createTank("data/tank2.txt");
 }
 
 ofxBox2dPolygon *ofApp::createTank(string file) {
@@ -47,14 +47,23 @@ ofxBox2dPolygon *ofApp::createTank(string file) {
 }
 
 vector<ofPoint> ofApp::loadPoints(string file) {
-  vector<ofPoint> pts;
-  vector<string> ptsStr = ofSplitString(ofBufferFromFile(file).getText(), ",");
-  for (int i = 0; i < ptsStr.size(); i += 2) {
-    float x = ofToFloat(ptsStr[i]);
-    float y = ofToFloat(ptsStr[i + 1]);
-    pts.push_back(ofPoint(x, y));
+  vector<ofPoint> points;
+  float x;
+  float y;
+
+  ifstream inputFile;
+  inputFile.open(file);
+
+  if (inputFile.is_open()) {
+    while (!inputFile.eof()) {
+      inputFile >> x;
+      inputFile >> y;
+      points.push_back(ofPoint(x, y));
+    }
   }
-  return pts;
+
+  inputFile.close();
+  return points;
 }
 
 //--------------------------------------------------------------
