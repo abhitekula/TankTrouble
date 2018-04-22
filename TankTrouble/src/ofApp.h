@@ -8,6 +8,14 @@ class ofApp : public ofBaseApp {
     //Constants
     const double kLinearVelocity = 5;
     const double kAngularVelocity = 2;
+    const int kP1Forward = 'W';
+    const int kP1Backward = 'S';
+    const int kP1Right = 'D';
+    const int kP1Left = 'A';
+    const int kP2Forward = OF_KEY_UP;
+    const int kP2Backward = OF_KEY_DOWN;
+    const int kP2Right = OF_KEY_RIGHT;
+    const int kP2Left = OF_KEY_LEFT;
 
 private:
     bool isKeyPressed[255];
