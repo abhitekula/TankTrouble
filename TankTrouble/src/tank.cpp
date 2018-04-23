@@ -39,7 +39,9 @@ vector<ofPoint> Tank::loadPoints(string file) {
   if (inputFile.is_open()) {
     while (!inputFile.eof()) {
       inputFile >> x;
+      cout << (x-5) << " ";
       inputFile >> y;
+      cout << (y-7.5) << "\n";
       points.push_back(ofPoint(x, y));
     }
   }

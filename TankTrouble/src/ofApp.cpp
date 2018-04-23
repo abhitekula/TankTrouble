@@ -19,10 +19,14 @@ void ofApp::setup() {
 
   p1_tank->body->SetLinearDamping(kDamping);
   p1_tank->body->SetAngularDamping(kDamping);
+  p1_tank->body->SetBullet(true);
+  p1_tank->setPosition(200,250);
+  p1_tank->setRotation(90);
 
   p2_tank->body->SetLinearDamping(kDamping);
   p2_tank->body->SetAngularDamping(kDamping);
-  p2_tank->setPosition(600, 0);
+  p2_tank->setPosition(600, 250);
+  p2_tank->setRotation(-90);
 }
 
 //--------------------------------------------------------------
