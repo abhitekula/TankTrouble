@@ -10,8 +10,7 @@ void ofApp::setup() {
   // Box2d
   box2d.init();
   box2d.setGravity(0, 0);
-  box2d.createGround();
-  cout << ofGetWidth() << " " << ofGetHeight() << endl;
+  box2d.createBounds();
   box2d.setFPS(30.0);
 
   // Create Tanks
@@ -24,9 +23,6 @@ void ofApp::setup() {
   tank_two->body->SetLinearDamping(kDamping);
   tank_two->body->SetAngularDamping(kDamping);
   tank_two->setPosition(600, 0);
-
-  // Create Wall
-  setupWall();
 }
 
 ofxBox2dPolygon *ofApp::createTank(string file) {
@@ -76,41 +72,6 @@ vector<ofPoint> ofApp::loadPoints(string file) {
   return points;
 }
 
-void ofApp::setupWall() {
-  // body definition
-  b2BodyDef myBodyDef;
-  myBodyDef.type = b2_dynamicBody;
-
-  // shape definition
-  b2PolygonShape polygonShape;
-  polygonShape.SetAsBox(1, 1); // a 2x2 rectangle
-
-  // fixture definition
-  b2FixtureDef myFixtureDef;
-  myFixtureDef.shape = &polygonShape;
-  myFixtureDef.density = 1;
-
-  // a static body
-  myBodyDef.type = b2_staticBody;
-  myBodyDef.position.Set(0, 0);
-  b2Body *wall_body = box2d.getWorld()->CreateBody(&myBodyDef);
-
-  // add four walls to the static body
-  polygonShape.SetAsBox(20, 1, b2Vec2(0, 0), 0); // ground
-  wall_body->CreateFixture(&myFixtureDef);
-  polygonShape.SetAsBox(20, 1, b2Vec2(0, 40), 0); // ceiling
-  wall_body->CreateFixture(&myFixtureDef);
-  polygonShape.SetAsBox(1, 20, b2Vec2(0, 20), 0); // left wall
-  wall_body->CreateFixture(&myFixtureDef);
-  polygonShape.SetAsBox(1, 20, b2Vec2(20, 20), 0); // right wall
-  wall_body->CreateFixture(&myFixtureDef);
-
-  wall = new ofxBox2dPolygon();
-  wall->setPhysics(0.7, 0.5, 0.5);
-  wall->triangulatePoly();
-  wall->body = wall_body;
-}
-
 //--------------------------------------------------------------
 void ofApp::update() {
   box2d.update();
@@ -158,6 +119,8 @@ void ofApp::update() {
 
 //--------------------------------------------------------------
 void ofApp::draw() {
+  box2d.draw();
+  
   ofSetHexColor(0xFF0000);
   ofFill();
   tank->draw();
@@ -248,7 +211,9 @@ void ofApp::mouseEntered(int x, int y) {}
 void ofApp::mouseExited(int x, int y) {}
 
 //--------------------------------------------------------------
-void ofApp::windowResized(int w, int h) { setupWall(); }
+void ofApp::windowResized(int w, int h) {
+  box2d.createBounds();
+}
 
 //--------------------------------------------------------------
 void ofApp::gotMessage(ofMessage msg) {}

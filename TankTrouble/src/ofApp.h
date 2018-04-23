@@ -6,7 +6,7 @@
 class ofApp : public ofBaseApp {
 
     //Constants
-    const double kLinearVelocity = 6;
+    const double kLinearVelocity = 10;
     const double kAngularVelocity = 3;
     const double kDamping = 1.5;
     const int kP1Forward = 'W';
@@ -57,6 +57,4 @@ public:
     vector <ofPoint> loadPoints(string file);
 
     ofxBox2dPolygon* createTank(string file);
-
-    void setupWall();
 };
