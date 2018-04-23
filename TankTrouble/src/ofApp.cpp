@@ -18,32 +18,37 @@ void ofApp::setup() {
 }
 
 ofxBox2dPolygon *ofApp::createTank(string file) {
-  ofxBox2dPolygon *tank = new ofxBox2dPolygon();
+  ofxBox2dPolygon *new_tank = new ofxBox2dPolygon();
 
   b2BodyDef tank_body_def;
   tank_body_def.type = b2_dynamicBody;
-  tank_body_def.position.Set(100, 100);
+  tank_body_def.position.Set(300, 300);
   tank_body_def.angle = 0;
 
   b2Body *tank_body = box2d.getWorld()->CreateBody(&tank_body_def);
 
   b2PolygonShape rectangle;
-  rectangle.SetAsBox(20, 20);
+  rectangle.SetAsBox(20, 1, b2Vec2(0, 0), 0);
 
   b2FixtureDef tank_fixture;
   tank_fixture.shape = &rectangle;
   tank_fixture.density = 1;
 
-  tank_body->CreateFixture(&tank_fixture);
+  // tank_body->CreateFixture(&tank_fixture);
 
   vector<ofPoint> tank_pts = loadPoints(file);
-  tank->addVertices(tank_pts);
-  tank->setPhysics(0.5, 0.5, 0.5);
-  tank->triangulatePoly();
-  tank->body = tank_body;
-  tank->create(box2d.getWorld());
+  new_tank->addVertices(tank_pts);
+  new_tank->setPhysics(0.7, 0.5, 0.5);
+  new_tank->triangulatePoly();
+  new_tank->body = tank_body;
+  new_tank->body->SetType(b2_dynamicBody);
+  new_tank->body->SetLinearDamping(0.5);
+  new_tank->body->SetAngularDamping(0.5);
+  new_tank->setPosition(100,100);
+  new_tank->create(box2d.getWorld());
+  // new_tank->body->CreateFixture(&tank_fixture);
 
-  return tank;
+  return new_tank;
 }
 
 vector<ofPoint> ofApp::loadPoints(string file) {
@@ -68,6 +73,11 @@ vector<ofPoint> ofApp::loadPoints(string file) {
 
 //--------------------------------------------------------------
 void ofApp::update() {
+  tank->body->SetLinearDamping(kDamping);
+  tank->body->SetAngularDamping(kDamping);
+
+  tank_two->body->SetLinearDamping(kDamping);
+  tank_two->body->SetAngularDamping(kDamping);
   box2d.update();
 
   if (isKeyPressed[kP1Forward]) {

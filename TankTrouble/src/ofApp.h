@@ -6,8 +6,9 @@
 class ofApp : public ofBaseApp {
 
     //Constants
-    const double kLinearVelocity = 5;
-    const double kAngularVelocity = 2;
+    const double kLinearVelocity = 6;
+    const double kAngularVelocity = 3;
+    const double kDamping = 1.5;
     const int kP1Forward = 'W';
     const int kP1Backward = 'S';
     const int kP1Right = 'D';
