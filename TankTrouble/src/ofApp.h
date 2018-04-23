@@ -23,6 +23,7 @@ private:
     ofxBox2d box2d;
     ofxBox2dPolygon *tank;
     ofxBox2dPolygon *tank_two;
+    ofxBox2dPolygon *wall;
 
 public:
     void setup();
@@ -56,4 +57,6 @@ public:
     vector <ofPoint> loadPoints(string file);
 
     ofxBox2dPolygon* createTank(string file);
+
+    void setupWall();
 };
