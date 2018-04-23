@@ -13,8 +13,18 @@ void ofApp::setup() {
   box2d.createGround();
   box2d.setFPS(30.0);
 
+//Create Tanks
   tank = createTank("data/tank.txt");
-  tank_two = createTank("data/tank2.txt");
+  tank_two = createTank("data/tank.txt");
+
+  tank->body->SetLinearDamping(kDamping);
+  tank->body->SetAngularDamping(kDamping);
+
+  tank_two->body->SetLinearDamping(kDamping);
+  tank_two->body->SetAngularDamping(kDamping);
+  tank_two->setPosition(600, 0);
+
+  //Create Wall
 }
 
 ofxBox2dPolygon *ofApp::createTank(string file) {
@@ -22,9 +32,6 @@ ofxBox2dPolygon *ofApp::createTank(string file) {
 
   b2BodyDef tank_body_def;
   tank_body_def.type = b2_dynamicBody;
-  tank_body_def.position.Set(300, 300);
-  tank_body_def.angle = 0;
-
   b2Body *tank_body = box2d.getWorld()->CreateBody(&tank_body_def);
 
   b2PolygonShape rectangle;
@@ -44,9 +51,7 @@ ofxBox2dPolygon *ofApp::createTank(string file) {
   new_tank->body->SetType(b2_dynamicBody);
   new_tank->body->SetLinearDamping(0.5);
   new_tank->body->SetAngularDamping(0.5);
-  new_tank->setPosition(100,100);
   new_tank->create(box2d.getWorld());
-  // new_tank->body->CreateFixture(&tank_fixture);
 
   return new_tank;
 }
@@ -73,11 +78,6 @@ vector<ofPoint> ofApp::loadPoints(string file) {
 
 //--------------------------------------------------------------
 void ofApp::update() {
-  tank->body->SetLinearDamping(kDamping);
-  tank->body->SetAngularDamping(kDamping);
-
-  tank_two->body->SetLinearDamping(kDamping);
-  tank_two->body->SetAngularDamping(kDamping);
   box2d.update();
 
   if (isKeyPressed[kP1Forward]) {
