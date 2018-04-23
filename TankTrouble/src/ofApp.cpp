@@ -6,6 +6,7 @@ void ofApp::setup() {
   ofBackgroundHex(0xfdefc2);
   ofSetLogLevel(OF_LOG_NOTICE);
   ofSetVerticalSync(true);
+  
 
   // Box2d
   box2d.init();
@@ -14,62 +15,15 @@ void ofApp::setup() {
   box2d.setFPS(30.0);
 
   // Create Tanks
-  tank = createTank("data/tank.txt");
-  tank_two = createTank("data/tank.txt");
+  p1_tank = new Tank(kDefaultTankFilename, box2d.getWorld());
+  p2_tank = new Tank(kDefaultTankFilename, box2d.getWorld());
 
-  tank->body->SetLinearDamping(kDamping);
-  tank->body->SetAngularDamping(kDamping);
+  p1_tank->body->SetLinearDamping(kDamping);
+  p1_tank->body->SetAngularDamping(kDamping);
 
-  tank_two->body->SetLinearDamping(kDamping);
-  tank_two->body->SetAngularDamping(kDamping);
-  tank_two->setPosition(600, 0);
-}
-
-ofxBox2dPolygon *ofApp::createTank(string file) {
-  ofxBox2dPolygon *new_tank = new ofxBox2dPolygon();
-
-  b2BodyDef tank_body_def;
-  tank_body_def.type = b2_dynamicBody;
-  b2Body *tank_body = box2d.getWorld()->CreateBody(&tank_body_def);
-
-  b2PolygonShape rectangle;
-  rectangle.SetAsBox(0, 0, b2Vec2(0, 0), 0);
-
-  b2FixtureDef tank_fixture;
-  tank_fixture.shape = &rectangle;
-  tank_fixture.density = 1;
-
-  tank_body->CreateFixture(&tank_fixture);
-
-  vector<ofPoint> tank_pts = loadPoints(file);
-  new_tank->addVertices(tank_pts);
-  new_tank->setPhysics(0.7, 0.5, 0.5);
-  new_tank->triangulatePoly();
-  new_tank->body = tank_body;
-  new_tank->body->SetType(b2_dynamicBody);
-  new_tank->create(box2d.getWorld());
-
-  return new_tank;
-}
-
-vector<ofPoint> ofApp::loadPoints(string file) {
-  vector<ofPoint> points;
-  float x;
-  float y;
-
-  ifstream inputFile;
-  inputFile.open(file);
-
-  if (inputFile.is_open()) {
-    while (!inputFile.eof()) {
-      inputFile >> x;
-      inputFile >> y;
-      points.push_back(ofPoint(x, y));
-    }
-  }
-
-  inputFile.close();
-  return points;
+  p2_tank->body->SetLinearDamping(kDamping);
+  p2_tank->body->SetAngularDamping(kDamping);
+  p2_tank->setPosition(600, 0);
 }
 
 //--------------------------------------------------------------
@@ -77,43 +31,43 @@ void ofApp::update() {
   box2d.update();
 
   if (isKeyPressed[kP1Forward]) {
-    double angle = (tank->body->GetAngle());
-    tank->body->SetLinearVelocity(
+    double angle = (p1_tank->body->GetAngle());
+    p1_tank->body->SetLinearVelocity(
         b2Vec2(sin(angle) * kLinearVelocity, -cos(angle) * kLinearVelocity));
   }
 
   if (isKeyPressed[kP1Backward]) {
-    double angle = (tank->body->GetAngle());
-    tank->body->SetLinearVelocity(
+    double angle = (p1_tank->body->GetAngle());
+    p1_tank->body->SetLinearVelocity(
         b2Vec2(-sin(angle) * kLinearVelocity, cos(angle) * kLinearVelocity));
   }
 
   if (isKeyPressed[kP1Left]) {
-    tank->body->SetAngularVelocity(-kAngularVelocity);
+    p1_tank->body->SetAngularVelocity(-kAngularVelocity);
   }
 
   if (isKeyPressed[kP1Right]) {
-    tank->body->SetAngularVelocity(kAngularVelocity);
+    p1_tank->body->SetAngularVelocity(kAngularVelocity);
   }
 
   if (isKeyPressed[kP2Forward]) {
-    double angle = (tank_two->body->GetAngle());
-    tank_two->body->SetLinearVelocity(
+    double angle = (p2_tank->body->GetAngle());
+    p2_tank->body->SetLinearVelocity(
         b2Vec2(sin(angle) * kLinearVelocity, -cos(angle) * kLinearVelocity));
   }
 
   if (isKeyPressed[kP2Backward]) {
-    double angle = (tank_two->body->GetAngle());
-    tank_two->body->SetLinearVelocity(
+    double angle = (p2_tank->body->GetAngle());
+    p2_tank->body->SetLinearVelocity(
         b2Vec2(-sin(angle) * kLinearVelocity, cos(angle) * kLinearVelocity));
   }
 
   if (isKeyPressed[kP2Left]) {
-    tank_two->body->SetAngularVelocity(-kAngularVelocity);
+    p2_tank->body->SetAngularVelocity(-kAngularVelocity);
   }
 
   if (isKeyPressed[kP2Right]) {
-    tank_two->body->SetAngularVelocity(kAngularVelocity);
+    p2_tank->body->SetAngularVelocity(kAngularVelocity);
   }
 }
 
@@ -123,11 +77,11 @@ void ofApp::draw() {
   
   ofSetHexColor(0xFF0000);
   ofFill();
-  tank->draw();
+  p1_tank->draw();
 
   ofSetHexColor(0x0000FF);
   ofFill();
-  tank_two->draw();
+  p2_tank->draw();
 }
 
 //--------------------------------------------------------------
@@ -135,29 +89,29 @@ void ofApp::keyPressed(int key) {
   int upper_key = toupper(key); // Standardize on upper case
 
   if (upper_key == kP1Forward) {
-    double angle = (tank->body->GetAngle());
-    tank->body->SetLinearVelocity(
+    double angle = (p1_tank->body->GetAngle());
+    p1_tank->body->SetLinearVelocity(
         b2Vec2(sin(angle) * kLinearVelocity, -cos(angle) * kLinearVelocity));
   } else if (upper_key == kP1Backward) {
-    double angle = (tank->body->GetAngle());
-    tank->body->SetLinearVelocity(
+    double angle = (p1_tank->body->GetAngle());
+    p1_tank->body->SetLinearVelocity(
         b2Vec2(-sin(angle) * kLinearVelocity, cos(angle) * kLinearVelocity));
   } else if (upper_key == kP1Left) {
-    tank->body->SetAngularVelocity(-kAngularVelocity);
+    p1_tank->body->SetAngularVelocity(-kAngularVelocity);
   } else if (upper_key == kP1Right) {
-    tank->body->SetAngularVelocity(kAngularVelocity);
+    p1_tank->body->SetAngularVelocity(kAngularVelocity);
   } else if (upper_key == kP2Forward) {
-    double angle = (tank_two->body->GetAngle());
-    tank_two->body->SetLinearVelocity(
+    double angle = (p2_tank->body->GetAngle());
+    p2_tank->body->SetLinearVelocity(
         b2Vec2(sin(angle) * kLinearVelocity, -cos(angle) * kLinearVelocity));
   } else if (upper_key == kP2Backward) {
-    double angle = (tank_two->body->GetAngle());
-    tank_two->body->SetLinearVelocity(
+    double angle = (p2_tank->body->GetAngle());
+    p2_tank->body->SetLinearVelocity(
         b2Vec2(-sin(angle) * kLinearVelocity, cos(angle) * kLinearVelocity));
   } else if (upper_key == kP2Left) {
-    tank_two->body->SetAngularVelocity(-kAngularVelocity);
+    p2_tank->body->SetAngularVelocity(-kAngularVelocity);
   } else if (upper_key == kP2Right) {
-    tank_two->body->SetAngularVelocity(kAngularVelocity);
+    p2_tank->body->SetAngularVelocity(kAngularVelocity);
   } else {
     return;
   }
@@ -170,21 +124,21 @@ void ofApp::keyReleased(int key) {
   int upper_key = toupper(key); // Standardize on upper case
 
   if (upper_key == kP1Forward) {
-    tank->body->SetLinearVelocity(b2Vec2(0, 0));
+    p1_tank->body->SetLinearVelocity(b2Vec2(0, 0));
   } else if (upper_key == kP1Backward) {
-    tank->body->SetLinearVelocity(b2Vec2(0, 0));
+    p1_tank->body->SetLinearVelocity(b2Vec2(0, 0));
   } else if (upper_key == kP1Left) {
-    tank->body->SetAngularVelocity(0);
+    p1_tank->body->SetAngularVelocity(0);
   } else if (upper_key == kP1Right) {
-    tank->body->SetAngularVelocity(0);
+    p1_tank->body->SetAngularVelocity(0);
   } else if (upper_key == kP2Forward) {
-    tank_two->body->SetLinearVelocity(b2Vec2(0, 0));
+    p2_tank->body->SetLinearVelocity(b2Vec2(0, 0));
   } else if (upper_key == kP2Backward) {
-    tank_two->body->SetLinearVelocity(b2Vec2(0, 0));
+    p2_tank->body->SetLinearVelocity(b2Vec2(0, 0));
   } else if (upper_key == kP2Left) {
-    tank_two->body->SetAngularVelocity(0);
+    p2_tank->body->SetAngularVelocity(0);
   } else if (upper_key == kP2Right) {
-    tank_two->body->SetAngularVelocity(0);
+    p2_tank->body->SetAngularVelocity(0);
   } else {
     return;
   }
