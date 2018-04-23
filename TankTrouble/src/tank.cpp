@@ -1,7 +1,8 @@
 #include "tank.h"
 
 Tank::Tank(string file, b2World *world) {
-    createTank(file, world);
+  createTank(file, world);
+  ammo = kStartingAmmo;
 }
 
 void *Tank::createTank(string file, b2World *world) {
@@ -46,3 +47,5 @@ vector<ofPoint> Tank::loadPoints(string file) {
   inputFile.close();
   return points;
 }
+
+int Tank::getAmmo() { return ammo; }

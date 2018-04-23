@@ -6,7 +6,6 @@ void ofApp::setup() {
   ofBackgroundHex(0xfdefc2);
   ofSetLogLevel(OF_LOG_NOTICE);
   ofSetVerticalSync(true);
-  
 
   // Box2d
   box2d.init();
@@ -74,7 +73,7 @@ void ofApp::update() {
 //--------------------------------------------------------------
 void ofApp::draw() {
   box2d.draw();
-  
+
   ofSetHexColor(0xFF0000);
   ofFill();
   p1_tank->draw();
@@ -165,9 +164,7 @@ void ofApp::mouseEntered(int x, int y) {}
 void ofApp::mouseExited(int x, int y) {}
 
 //--------------------------------------------------------------
-void ofApp::windowResized(int w, int h) {
-  box2d.createBounds();
-}
+void ofApp::windowResized(int w, int h) { box2d.createBounds(); }
 
 //--------------------------------------------------------------
 void ofApp::gotMessage(ofMessage msg) {}
