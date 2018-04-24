@@ -52,25 +52,28 @@ vector<ofPoint> Tank::loadPoints(string file) {
 int Tank::getAmmo() { return ammo; }
 
 void Tank::shoot(b2World *world) {
-  ofxBox2dCircle *bullet = new ofxBox2dCircle();
-  bullets.push_back(bullet);
+  if (ammo > 0) {
+    ammo--;
+    ofxBox2dCircle *bullet = new ofxBox2dCircle();
+    bullets.push_back(bullet);
 
-  b2BodyDef bullet_body_def;
-  bullet_body_def.type = b2_dynamicBody;
-  b2Body *bullet_body = world->CreateBody(&bullet_body_def);
-  bullet->setPhysics(1, 1, 0); // Density, Bounce, Friction
-  bullet->setDamping(0);
-  bullet->body = bullet_body;
-  bullet->body->SetType(b2_dynamicBody);
-  bullet->body->SetBullet(true);
+    b2BodyDef bullet_body_def;
+    bullet_body_def.type = b2_dynamicBody;
+    b2Body *bullet_body = world->CreateBody(&bullet_body_def);
+    bullet->setPhysics(1, 1, 0); // Density, Bounce, Friction
+    bullet->setDamping(0);
+    bullet->body = bullet_body;
+    bullet->body->SetType(b2_dynamicBody);
+    bullet->body->SetBullet(true);
 
-  double tank_angle = this->body->GetAngle();
-  bullet->setup(world, this->getPosition().x + 125 * sin(tank_angle),
-                this->getPosition().y + 125 * -cos(tank_angle), 10);
-  bullet->setRotation(this->getRotation());
-  double angle = (bullet->body->GetAngle());
-  bullet->setVelocity(sin(angle) * kBulletVelocity,
-                      -cos(angle) * kBulletVelocity);
+    double tank_angle = this->body->GetAngle();
+    bullet->setup(world, this->getPosition().x + 125 * sin(tank_angle),
+                  this->getPosition().y + 125 * -cos(tank_angle), 10);
+    bullet->setRotation(this->getRotation());
+    double angle = (bullet->body->GetAngle());
+    bullet->setVelocity(sin(angle) * kBulletVelocity,
+                        -cos(angle) * kBulletVelocity);
+  }
 }
 
 void Tank::draw() {
