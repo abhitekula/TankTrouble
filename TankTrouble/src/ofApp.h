@@ -20,7 +20,7 @@ class ofApp : public ofBaseApp {
   const int kP2Backward = OF_KEY_DOWN;
   const int kP2Right = OF_KEY_RIGHT;
   const int kP2Left = OF_KEY_LEFT;
-  const int kP2Shoot = OF_KEY_PAGE_UP;
+  const int kP2Shoot = OF_KEY_PAGE_DOWN;
 
 private:
   bool isKeyPressed[255];
