@@ -15,10 +15,12 @@ class ofApp : public ofBaseApp {
   const int kP1Backward = 'S';
   const int kP1Right = 'D';
   const int kP1Left = 'A';
+  const int kP1Shoot = 'E';
   const int kP2Forward = OF_KEY_UP;
   const int kP2Backward = OF_KEY_DOWN;
   const int kP2Right = OF_KEY_RIGHT;
   const int kP2Left = OF_KEY_LEFT;
+  const int kP2Shoot = OF_KEY_PAGE_UP;
 
 private:
   bool isKeyPressed[255];

@@ -39,9 +39,7 @@ vector<ofPoint> Tank::loadPoints(string file) {
   if (inputFile.is_open()) {
     while (!inputFile.eof()) {
       inputFile >> x;
-      cout << (x-5) << " ";
       inputFile >> y;
-      cout << (y-7.5) << "\n";
       points.push_back(ofPoint(x, y));
     }
   }
@@ -51,3 +49,31 @@ vector<ofPoint> Tank::loadPoints(string file) {
 }
 
 int Tank::getAmmo() { return ammo; }
+
+void Tank::shoot(b2World *world) {
+  ofxBox2dPolygon *bullet = new ofxBox2dPolygon();
+  bullets.push_back(bullet);
+
+  b2BodyDef bullet_body_def;
+  bullet_body_def.type = b2_dynamicBody;
+  b2Body *bullet_body = world->CreateBody(&bullet_body_def);
+
+  vector<ofPoint> bullet_pts = loadPoints(kBulletFilename);
+  bullet->addVertices(bullet_pts);
+  bullet->setPhysics(0.7, 0.5, 0.5);
+  bullet->body = bullet_body;
+  bullet->body->SetType(b2_dynamicBody);
+  bullet->create(world);
+
+  bullet->setPosition(this->getPosition().x + 50, this->getPosition().y - 100);
+  bullet->setRotation(this->getRotation());
+  double angle = (bullet->body->GetAngle());
+  bullet->setVelocity(sin(angle) * kBulletVelocity, -cos(angle) * kBulletVelocity);
+}
+
+void Tank::draw() {
+    super::draw();
+    for (auto bullet : bullets) {
+        bullet->draw();
+    }
+}

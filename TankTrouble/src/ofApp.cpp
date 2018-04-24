@@ -20,7 +20,7 @@ void ofApp::setup() {
   p1_tank->body->SetLinearDamping(kDamping);
   p1_tank->body->SetAngularDamping(kDamping);
   p1_tank->body->SetBullet(true);
-  p1_tank->setPosition(200,250);
+  p1_tank->setPosition(200, 250);
   p1_tank->setRotation(90);
 
   p2_tank->body->SetLinearDamping(kDamping);
@@ -115,6 +115,12 @@ void ofApp::keyPressed(int key) {
     p2_tank->body->SetAngularVelocity(-kAngularVelocity);
   } else if (upper_key == kP2Right) {
     p2_tank->body->SetAngularVelocity(kAngularVelocity);
+  } else if (upper_key == kP1Shoot) {
+    p1_tank->shoot(box2d.getWorld());
+    return;
+  } else if (upper_key == kP2Shoot) {
+    p2_tank->shoot(box2d.getWorld());
+    return;
   } else {
     return;
   }
