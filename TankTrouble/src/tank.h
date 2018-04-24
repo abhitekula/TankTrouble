@@ -19,7 +19,7 @@ private:
 
   int ammo;
   double health;
-  vector<ofxBox2dCircle*> bullets;
+  vector<ofxBox2dCircle *> bullets;
 
 public:
   Tank(string file, b2World *world); // Initalize from file

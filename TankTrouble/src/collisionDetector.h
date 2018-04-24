@@ -4,8 +4,6 @@
 
 class CollisionDetector : public b2ContactListener {
 
-  // Constants
-
 public:
-  void BeginContact(b2Contact* contact);
+  void BeginContact(b2Contact *contact);
 };

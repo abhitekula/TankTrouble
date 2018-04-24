@@ -3,6 +3,7 @@
 
 Tank::Tank(string file, b2World *world) {
   createTank(file, world);
+  body->SetUserData(this);
   ammo = kStartingAmmo;
 }
 
@@ -65,6 +66,7 @@ void Tank::shoot(b2World *world) {
     bullet->body = bullet_body;
     bullet->body->SetType(b2_dynamicBody);
     bullet->body->SetBullet(true);
+    bullet->body->SetUserData(this);
 
     double tank_angle = this->body->GetAngle();
     bullet->setup(world, this->getPosition().x + 125 * sin(tank_angle),

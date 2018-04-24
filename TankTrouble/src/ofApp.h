@@ -1,9 +1,9 @@
 #pragma once
 
+#include "collisionDetector.h"
 #include "ofMain.h"
 #include "ofxBox2d.h"
 #include "tank.h"
-#include "collisionDetector.h"
 
 class ofApp : public ofBaseApp {
 
@@ -32,7 +32,6 @@ private:
   void setupTanks();
 
 public:
-  
   void setup();
 
   void update();

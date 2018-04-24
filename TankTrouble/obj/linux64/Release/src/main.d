@@ -1,5 +1,7 @@
 obj/linux64/Release/src/main.o: \
  /home/abhi/CLionProjects/final-project-abhitekula/TankTrouble/src/main.cpp \
+ /home/abhi/CLionProjects/final-project-abhitekula/TankTrouble/src/ofApp.h \
+ /home/abhi/CLionProjects/final-project-abhitekula/TankTrouble/src/collisionDetector.h \
  /home/abhi/Downloads/of_v0.9.8_linux64_release/libs/openFrameworks/ofMain.h \
  /home/abhi/Downloads/of_v0.9.8_linux64_release/libs/openFrameworks/utils/ofConstants.h \
  /home/abhi/Downloads/of_v0.9.8_linux64_release/libs/tess2/include/tesselator.h \
@@ -347,7 +349,6 @@ obj/linux64/Release/src/main.o: \
  /home/abhi/Downloads/of_v0.9.8_linux64_release/libs/openFrameworks/video/ofGstVideoPlayer.h \
  /home/abhi/Downloads/of_v0.9.8_linux64_release/libs/openFrameworks/3d/ofCamera.h \
  /home/abhi/Downloads/of_v0.9.8_linux64_release/libs/openFrameworks/3d/ofEasyCam.h \
- /home/abhi/CLionProjects/final-project-abhitekula/TankTrouble/src/ofApp.h \
  /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/src/ofxBox2d.h \
  /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/src/ofxBox2dUtils.h \
  /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/libs/Box2D/Box2D.h \
@@ -399,8 +400,11 @@ obj/linux64/Release/src/main.o: \
  /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/src/ofxBox2dJoint.h \
  /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/src/ofxBox2dRender.h \
  /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/src/ofxBox2dContactListener.h \
- /home/abhi/CLionProjects/final-project-abhitekula/TankTrouble/src/tank.h \
- /home/abhi/CLionProjects/final-project-abhitekula/TankTrouble/src/collisionDetector.h
+ /home/abhi/CLionProjects/final-project-abhitekula/TankTrouble/src/tank.h
+
+/home/abhi/CLionProjects/final-project-abhitekula/TankTrouble/src/ofApp.h:
+
+/home/abhi/CLionProjects/final-project-abhitekula/TankTrouble/src/collisionDetector.h:
 
 /home/abhi/Downloads/of_v0.9.8_linux64_release/libs/openFrameworks/ofMain.h:
 
@@ -1130,8 +1134,6 @@ obj/linux64/Release/src/main.o: \
 
 /home/abhi/Downloads/of_v0.9.8_linux64_release/libs/openFrameworks/3d/ofEasyCam.h:
 
-/home/abhi/CLionProjects/final-project-abhitekula/TankTrouble/src/ofApp.h:
-
 /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/src/ofxBox2d.h:
 
 /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/src/ofxBox2dUtils.h:
@@ -1235,5 +1237,3 @@ obj/linux64/Release/src/main.o: \
 /home/abhi/Downloads/of_v0.9.8_linux64_release/addons/ofxBox2d/src/ofxBox2dContactListener.h:
 
 /home/abhi/CLionProjects/final-project-abhitekula/TankTrouble/src/tank.h:
-
-/home/abhi/CLionProjects/final-project-abhitekula/TankTrouble/src/collisionDetector.h:
