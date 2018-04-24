@@ -13,8 +13,16 @@ void ofApp::setup() {
   box2d.createBounds();
   box2d.setFPS(30.0);
 
+  //Setup Collision Detecter
+  CollisionDetector *detector = new CollisionDetector();
+  box2d.getWorld()->SetContactListener(detector);
+
   // Create Tanks
-  p1_tank = new Tank(kDefaultTankFilename, box2d.getWorld());
+  this->setupTanks();
+}
+
+void ofApp::setupTanks() {
+p1_tank = new Tank(kDefaultTankFilename, box2d.getWorld());
   p2_tank = new Tank(kDefaultTankFilename, box2d.getWorld());
 
   p1_tank->body->SetLinearDamping(kDamping);

@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "ofxBox2d.h"
 #include "tank.h"
+#include "collisionDetector.h"
 
 class ofApp : public ofBaseApp {
 
@@ -27,6 +28,8 @@ private:
   Tank *p1_tank;
   Tank *p2_tank;
   ofxBox2d box2d;
+
+  void setupTanks();
 
 public:
   
