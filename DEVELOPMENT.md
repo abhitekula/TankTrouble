@@ -11,6 +11,9 @@
 * Made tank its own object
 * Fixed tanks getting stuck inside each other
 * Added tanks shooting missile
+* Add collision detection of missile with other tank.
+* Added score and FPS
+* Added round reset
 
 ## Issues
 * OpenFrameworks wrapper for Box2d does not behave the same as regular Box2d.
@@ -26,14 +29,13 @@
 * Sometimes tanks would get stuck together
 * Bullet shape meant it did not bounce of walls properly
 * Getting bullet to start at location of turret regardless of tanks current orientation.
+* Shooting the bullet would register as a collision with the tank.
+* Segfault when deleting bullet
 
 ## ToDo
 
 * Create the actual maze and place it on the screen.
 * Resize tanks and elements of screen when windows is resized.
 * Add audio and sound effects.
-* Add collision detection of missile with other tank.
-* Add missiles so tanks can fight each other.
 * Add Pause Menu.
 * Powerups.
-* Add score, winner, etc.

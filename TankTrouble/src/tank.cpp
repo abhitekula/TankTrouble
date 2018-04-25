@@ -5,7 +5,7 @@ Tank::Tank(int id, string file, b2World *world) {
   id_ = id;
   health_ = kStartingHealth;
   ammo_ = kStartingAmmo;
-  
+
   createTank(file, world);
   body->SetUserData(this);
 }
@@ -59,21 +59,19 @@ int Tank::getId() { return id_; }
 
 double Tank::getHealth() { return health_; }
 
-vector<ofxBox2dCircle *> Tank::getBullets() {
-  return bullets_;
-}
+vector<ofxBox2dCircle *> Tank::getBullets() { return bullets_; }
 
 bool Tank::isDead() { return health_ <= 0; }
 
-void Tank::hit() {
-  health_ -= kBulletDamage;
-}
+void Tank::hit() { health_ -= kBulletDamage; }
 
-void Tank::reset(){
+void Tank::reset() {
   for (auto bullet : bullets_) {
     bullet->destroy();
   }
   bullets_.clear();
+  body->SetLinearVelocity(b2Vec2(0, 0));
+  body->SetAngularVelocity(0);
   health_ = kStartingHealth;
   ammo_ = kStartingAmmo;
 }

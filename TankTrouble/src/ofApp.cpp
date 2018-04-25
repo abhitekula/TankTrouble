@@ -34,7 +34,7 @@ void ofApp::setupTanks() {
 
   p2_tank->body->SetLinearDamping(kDamping);
   p2_tank->body->SetAngularDamping(kDamping);
-  p2_tank->setPosition(600, 250);
+  p2_tank->setPosition(1000, 250);
   p2_tank->setRotation(-90);
 }
 
@@ -105,7 +105,7 @@ void ofApp::reset() {
 
   p1_tank->setPosition(200, 250);
   p1_tank->setRotation(90);
-  p2_tank->setPosition(600, 250);
+  p2_tank->setPosition(1000, 250);
   p2_tank->setRotation(-90);
 }
 
@@ -169,7 +169,7 @@ void ofApp::keyPressed(int key) {
   } else if (upper_key == kP2Shoot) {
     p2_tank->shoot(box2d.getWorld());
     return;
-  } else if (upper_key == 'R') {
+  } else if (is_round_over && upper_key == 'R') {
     reset();
     return;
   } else {
