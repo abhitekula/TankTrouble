@@ -2,10 +2,12 @@
 #include <math.h>
 
 Tank::Tank(int id, string file, b2World *world) {
-  createTank(file, world);
   id_ = id;
+  health_ = kStartingHealth;
+  ammo_ = kStartingAmmo;
+  
+  createTank(file, world);
   body->SetUserData(this);
-  ammo = kStartingAmmo;
 }
 
 void *Tank::createTank(string file, b2World *world) {
@@ -51,13 +53,29 @@ vector<ofPoint> Tank::loadPoints(string file) {
   return points;
 }
 
-int Tank::getAmmo() { return ammo; }
+int Tank::getAmmo() { return ammo_; }
 
 int Tank::getId() { return id_; }
 
+double Tank::getHealth() { return health_; }
+
+bool Tank::isDead() { return health_ <= 0; }
+
+void Tank::hit() {
+  health_ -= kBulletDamage;
+}
+
+void Tank::reset(){
+  for (auto bullet : bullets_) {
+    delete bullet;
+  }
+  health_ = kStartingHealth;
+  ammo_ = kStartingAmmo;
+}
+
 void Tank::shoot(b2World *world) {
-  if (ammo > 0) {
-    ammo--;
+  if (ammo_ > 0) {
+    ammo_--;
     ofxBox2dCircle *bullet = new ofxBox2dCircle();
 
     b2BodyDef bullet_body_def;
@@ -77,13 +95,13 @@ void Tank::shoot(b2World *world) {
     bullet->setVelocity(sin(angle) * kBulletVelocity,
                         -cos(angle) * kBulletVelocity);
     bullet->body->SetUserData(bullet);
-    bullets.push_back(bullet);
+    bullets_.push_back(bullet);
   }
 }
 
 void Tank::draw() {
   super::draw();
-  for (auto bullet : bullets) {
+  for (auto bullet : bullets_) {
     bullet->draw();
   }
 }

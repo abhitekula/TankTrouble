@@ -25,11 +25,18 @@ class ofApp : public ofBaseApp {
 
 private:
   bool isKeyPressed[255];
+  bool is_round_over;
   Tank *p1_tank;
   Tank *p2_tank;
   ofxBox2d box2d;
+  int p1_score_ = 0;
+  int p2_score_ = 0;
 
   void setupTanks();
+
+  void updateTanks();
+
+  void reset();
 
 public:
   void setup();

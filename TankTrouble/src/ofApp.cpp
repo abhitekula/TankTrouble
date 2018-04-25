@@ -6,6 +6,7 @@ void ofApp::setup() {
   ofBackgroundHex(0xfdefc2);
   ofSetLogLevel(OF_LOG_NOTICE);
   ofSetVerticalSync(true);
+  is_round_over = false;
 
   // Box2d
   box2d.init();
@@ -41,6 +42,21 @@ void ofApp::setupTanks() {
 void ofApp::update() {
   box2d.update();
 
+  // Check if tanks are dead
+  if (p1_tank->isDead()) {
+    cout << "P1 is Dead" << endl;
+    p2_score_++;
+    is_round_over = true;
+  } else if (p2_tank->isDead()) {
+    cout << "P2 is Dead" << endl;
+    p1_score_++;
+    is_round_over = true;
+  } else {
+    updateTanks();
+  }
+}
+
+void ofApp::updateTanks() {
   if (isKeyPressed[kP1Forward]) {
     double angle = (p1_tank->body->GetAngle());
     p1_tank->body->SetLinearVelocity(
@@ -82,17 +98,36 @@ void ofApp::update() {
   }
 }
 
+void ofApp::reset() {
+  p1_tank->reset();
+  p2_tank->reset();
+  setup();
+}
+
 //--------------------------------------------------------------
 void ofApp::draw() {
   box2d.draw();
 
-  ofSetHexColor(0xFF0000);
-  ofFill();
-  p1_tank->draw();
+  string score = "Score: Player 1 - " + ofToString(p1_score_) + " Player 2 - " +
+                 ofToString(p2_score_);
+  string fps = "FPS: " + ofToString(ofGetFrameRate());
+  ofSetHexColor(000000);
+  ofDrawBitmapString(score, 0, 20);
+  ofDrawBitmapString(fps, ofGetWidth() - 100, 20);
 
-  ofSetHexColor(0x0000FF);
-  ofFill();
-  p2_tank->draw();
+  if (!is_round_over) {
+    ofSetHexColor(0xFF0000);
+    ofFill();
+    p1_tank->draw();
+
+    ofSetHexColor(0x0000FF);
+    ofFill();
+    p2_tank->draw();
+  } else {
+    string end_message = "Press 'R' to start the next round:";
+    ofSetHexColor(000000);
+    ofDrawBitmapString(end_message, ofGetWidth() / 2, ofGetHeight() / 2);
+  }
 }
 
 //--------------------------------------------------------------
@@ -128,6 +163,9 @@ void ofApp::keyPressed(int key) {
     return;
   } else if (upper_key == kP2Shoot) {
     p2_tank->shoot(box2d.getWorld());
+    return;
+  } else if (upper_key == 'R') {
+    reset();
     return;
   } else {
     return;
