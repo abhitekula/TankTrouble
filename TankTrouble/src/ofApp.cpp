@@ -22,8 +22,8 @@ void ofApp::setup() {
 }
 
 void ofApp::setupTanks() {
-  p1_tank = new Tank(kDefaultTankFilename, box2d.getWorld());
-  p2_tank = new Tank(kDefaultTankFilename, box2d.getWorld());
+  p1_tank = new Tank(1, kDefaultTankFilename, box2d.getWorld());
+  p2_tank = new Tank(2, kDefaultTankFilename, box2d.getWorld());
 
   p1_tank->body->SetLinearDamping(kDamping);
   p1_tank->body->SetAngularDamping(kDamping);

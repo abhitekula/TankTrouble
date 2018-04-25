@@ -18,13 +18,16 @@ private:
   void *createTank(string file, b2World *world);
 
   int ammo;
+  int id_;
   double health;
   vector<ofxBox2dCircle *> bullets;
 
 public:
-  Tank(string file, b2World *world); // Initalize from file
+  Tank(int id, string file, b2World *world); // Initalize from file
 
   int getAmmo();
+
+  int getId();
 
   void draw();
 

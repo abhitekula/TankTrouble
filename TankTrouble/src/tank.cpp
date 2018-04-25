@@ -1,8 +1,9 @@
 #include "tank.h"
 #include <math.h>
 
-Tank::Tank(string file, b2World *world) {
+Tank::Tank(int id, string file, b2World *world) {
   createTank(file, world);
+  id_ = id;
   body->SetUserData(this);
   ammo = kStartingAmmo;
 }
@@ -52,6 +53,8 @@ vector<ofPoint> Tank::loadPoints(string file) {
 
 int Tank::getAmmo() { return ammo; }
 
+int Tank::getId() { return id_; }
+
 void Tank::shoot(b2World *world) {
   if (ammo > 0) {
     ammo--;
@@ -67,8 +70,8 @@ void Tank::shoot(b2World *world) {
     bullet->body->SetBullet(true);
 
     double tank_angle = this->body->GetAngle();
-    bullet->setup(world, this->getPosition().x + 125 * sin(tank_angle),
-                  this->getPosition().y + 125 * -cos(tank_angle), 10);
+    bullet->setup(world, this->getPosition().x + 135 * sin(tank_angle),
+                  this->getPosition().y + 135 * -cos(tank_angle), 10);
     bullet->setRotation(this->getRotation());
     double angle = (bullet->body->GetAngle());
     bullet->setVelocity(sin(angle) * kBulletVelocity,
