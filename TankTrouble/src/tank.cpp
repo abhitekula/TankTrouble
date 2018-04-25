@@ -56,7 +56,6 @@ void Tank::shoot(b2World *world) {
   if (ammo > 0) {
     ammo--;
     ofxBox2dCircle *bullet = new ofxBox2dCircle();
-    bullets.push_back(bullet);
 
     b2BodyDef bullet_body_def;
     bullet_body_def.type = b2_dynamicBody;
@@ -66,7 +65,6 @@ void Tank::shoot(b2World *world) {
     bullet->body = bullet_body;
     bullet->body->SetType(b2_dynamicBody);
     bullet->body->SetBullet(true);
-    bullet->body->SetUserData(this);
 
     double tank_angle = this->body->GetAngle();
     bullet->setup(world, this->getPosition().x + 125 * sin(tank_angle),
@@ -75,6 +73,8 @@ void Tank::shoot(b2World *world) {
     double angle = (bullet->body->GetAngle());
     bullet->setVelocity(sin(angle) * kBulletVelocity,
                         -cos(angle) * kBulletVelocity);
+    bullet->body->SetUserData(bullet);
+    bullets.push_back(bullet);
   }
 }
 
