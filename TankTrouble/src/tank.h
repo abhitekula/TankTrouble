@@ -32,6 +32,8 @@ public:
 
   double getHealth();
 
+  vector<ofxBox2dCircle *> getBullets();
+
   bool isDead();
 
   void draw();

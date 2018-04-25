@@ -59,6 +59,10 @@ int Tank::getId() { return id_; }
 
 double Tank::getHealth() { return health_; }
 
+vector<ofxBox2dCircle *> Tank::getBullets() {
+  return bullets_;
+}
+
 bool Tank::isDead() { return health_ <= 0; }
 
 void Tank::hit() {
@@ -67,8 +71,9 @@ void Tank::hit() {
 
 void Tank::reset(){
   for (auto bullet : bullets_) {
-    delete bullet;
+    bullet->destroy();
   }
+  bullets_.clear();
   health_ = kStartingHealth;
   ammo_ = kStartingAmmo;
 }

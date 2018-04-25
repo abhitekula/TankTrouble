@@ -40,18 +40,17 @@ void ofApp::setupTanks() {
 
 //--------------------------------------------------------------
 void ofApp::update() {
-  box2d.update();
-
   // Check if tanks are dead
-  if (p1_tank->isDead()) {
+  if (p1_tank->isDead() && !is_round_over) {
     cout << "P1 is Dead" << endl;
     p2_score_++;
     is_round_over = true;
-  } else if (p2_tank->isDead()) {
+  } else if (p2_tank->isDead() && !is_round_over) {
     cout << "P2 is Dead" << endl;
     p1_score_++;
     is_round_over = true;
   } else {
+    box2d.update();
     updateTanks();
   }
 }
@@ -101,7 +100,13 @@ void ofApp::updateTanks() {
 void ofApp::reset() {
   p1_tank->reset();
   p2_tank->reset();
-  setup();
+
+  is_round_over = false;
+
+  p1_tank->setPosition(200, 250);
+  p1_tank->setRotation(90);
+  p2_tank->setPosition(600, 250);
+  p2_tank->setRotation(-90);
 }
 
 //--------------------------------------------------------------
