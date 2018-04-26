@@ -3,7 +3,9 @@
 void CollisionDetector::BeginContact(b2Contact *contact) {
   Tank *tank = nullptr;
   ofxBox2dCircle *bullet = nullptr;
+
   cout << "Collision Detected\n";
+  
   auto bodyA = static_cast<ofxBox2dBaseShape *>(
       contact->GetFixtureA()->GetBody()->GetUserData());
   auto bodyB = static_cast<ofxBox2dBaseShape *>(

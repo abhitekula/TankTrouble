@@ -3,115 +3,118 @@
 
 //--------------------------------------------------------------
 void ofApp::setup() {
+  ofSetFrameRate(30);
   ofBackgroundHex(0xfdefc2);
   ofSetLogLevel(OF_LOG_NOTICE);
   ofSetVerticalSync(true);
-  is_round_over = false;
+  is_round_over_ = false;
 
   // Box2d
-  box2d.init();
-  box2d.setGravity(0, 0);
-  box2d.createBounds();
-  box2d.setFPS(30.0);
+  box2d_.init();
+  box2d_.setGravity(0, 0);
+  box2d_.createBounds();
+  box2d_.setFPS(30.0);
 
   // Setup Collision Detecter
   CollisionDetector *detector = new CollisionDetector();
-  box2d.getWorld()->SetContactListener(detector);
+  box2d_.getWorld()->SetContactListener(detector);
 
   // Create Tanks
   this->setupTanks();
 }
 
 void ofApp::setupTanks() {
-  p1_tank = new Tank(1, kDefaultTankFilename, box2d.getWorld());
-  p2_tank = new Tank(2, kDefaultTankFilename, box2d.getWorld());
+  p1_tank_ = new Tank(1, kDefaultTankFilename, box2d_.getWorld());
+  p2_tank_ = new Tank(2, kDefaultTankFilename, box2d_.getWorld());
 
-  p1_tank->body->SetLinearDamping(kDamping);
-  p1_tank->body->SetAngularDamping(kDamping);
-  p1_tank->body->SetBullet(true);
-  p1_tank->setPosition(200, 250);
-  p1_tank->setRotation(90);
+  p1_tank_->body->SetLinearDamping(kDamping);
+  p1_tank_->body->SetAngularDamping(kDamping);
+  p1_tank_->body->SetBullet(true);
+  p1_tank_->setPosition(200, 250);
+  p1_tank_->setRotation(90);
 
-  p2_tank->body->SetLinearDamping(kDamping);
-  p2_tank->body->SetAngularDamping(kDamping);
-  p2_tank->setPosition(1000, 250);
-  p2_tank->setRotation(-90);
+  p2_tank_->body->SetLinearDamping(kDamping);
+  p2_tank_->body->SetAngularDamping(kDamping);
+  p2_tank_->body->SetBullet(true);
+  p2_tank_->setPosition(1000, 250);
+  p2_tank_->setRotation(-90);
 }
 
 //--------------------------------------------------------------
 void ofApp::update() {
   // Check if tanks are dead
-  if (p1_tank->isDead() && !is_round_over) {
+  if (p1_tank_->isDead() && !is_round_over_) {
     cout << "P1 is Dead" << endl;
     p2_score_++;
-    is_round_over = true;
-  } else if (p2_tank->isDead() && !is_round_over) {
+    is_round_over_ = true;
+  } else if (p2_tank_->isDead() && !is_round_over_) {
     cout << "P2 is Dead" << endl;
     p1_score_++;
-    is_round_over = true;
+    is_round_over_ = true;
   } else {
-    box2d.update();
+    box2d_.update();
     updateTanks();
   }
 }
 
 void ofApp::updateTanks() {
-  if (isKeyPressed[kP1Forward]) {
-    double angle = (p1_tank->body->GetAngle());
-    p1_tank->body->SetLinearVelocity(
+  if (is_key_pressed_[kP1Forward]) {
+    double angle = (p1_tank_->body->GetAngle());
+    p1_tank_->body->SetLinearVelocity(
         b2Vec2(sin(angle) * kLinearVelocity, -cos(angle) * kLinearVelocity));
   }
 
-  if (isKeyPressed[kP1Backward]) {
-    double angle = (p1_tank->body->GetAngle());
-    p1_tank->body->SetLinearVelocity(
+  if (is_key_pressed_[kP1Backward]) {
+    double angle = (p1_tank_->body->GetAngle());
+    p1_tank_->body->SetLinearVelocity(
         b2Vec2(-sin(angle) * kLinearVelocity, cos(angle) * kLinearVelocity));
   }
 
-  if (isKeyPressed[kP1Left]) {
-    p1_tank->body->SetAngularVelocity(-kAngularVelocity);
+  if (is_key_pressed_[kP1Left]) {
+    p1_tank_->body->SetAngularVelocity(-kAngularVelocity);
   }
 
-  if (isKeyPressed[kP1Right]) {
-    p1_tank->body->SetAngularVelocity(kAngularVelocity);
+  if (is_key_pressed_[kP1Right]) {
+    p1_tank_->body->SetAngularVelocity(kAngularVelocity);
   }
 
-  if (isKeyPressed[kP2Forward]) {
-    double angle = (p2_tank->body->GetAngle());
-    p2_tank->body->SetLinearVelocity(
+  if (is_key_pressed_[kP2Forward]) {
+    double angle = (p2_tank_->body->GetAngle());
+    p2_tank_->body->SetLinearVelocity(
         b2Vec2(sin(angle) * kLinearVelocity, -cos(angle) * kLinearVelocity));
   }
 
-  if (isKeyPressed[kP2Backward]) {
-    double angle = (p2_tank->body->GetAngle());
-    p2_tank->body->SetLinearVelocity(
+  if (is_key_pressed_[kP2Backward]) {
+    double angle = (p2_tank_->body->GetAngle());
+    p2_tank_->body->SetLinearVelocity(
         b2Vec2(-sin(angle) * kLinearVelocity, cos(angle) * kLinearVelocity));
   }
 
-  if (isKeyPressed[kP2Left]) {
-    p2_tank->body->SetAngularVelocity(-kAngularVelocity);
+  if (is_key_pressed_[kP2Left]) {
+    p2_tank_->body->SetAngularVelocity(-kAngularVelocity);
   }
 
-  if (isKeyPressed[kP2Right]) {
-    p2_tank->body->SetAngularVelocity(kAngularVelocity);
+  if (is_key_pressed_[kP2Right]) {
+    p2_tank_->body->SetAngularVelocity(kAngularVelocity);
   }
 }
 
 void ofApp::reset() {
-  p1_tank->reset();
-  p2_tank->reset();
+  p1_tank_->reset();
+  p2_tank_->reset();
 
-  is_round_over = false;
+  is_round_over_ = false;
 
-  p1_tank->setPosition(200, 250);
-  p1_tank->setRotation(90);
-  p2_tank->setPosition(1000, 250);
-  p2_tank->setRotation(-90);
+  p1_tank_->setPosition(200, 250);
+  p1_tank_->setRotation(90);
+  p2_tank_->setPosition(1000, 250);
+  p2_tank_->setRotation(-90);
 }
+
 
 //--------------------------------------------------------------
 void ofApp::draw() {
-  box2d.draw();
+  box2d_.draw();
 
   string score = "Score: Player 1 - " + ofToString(p1_score_) + " Player 2 - " +
                  ofToString(p2_score_);
@@ -120,14 +123,14 @@ void ofApp::draw() {
   ofDrawBitmapString(score, 0, 20);
   ofDrawBitmapString(fps, ofGetWidth() - 100, 20);
 
-  if (!is_round_over) {
+  if (!is_round_over_) {
     ofSetHexColor(0xFF0000);
     ofFill();
-    p1_tank->draw();
+    p1_tank_->draw();
 
     ofSetHexColor(0x0000FF);
     ofFill();
-    p2_tank->draw();
+    p2_tank_->draw();
   } else {
     string end_message = "Press 'R' to start the next round:";
     ofSetHexColor(000000);
@@ -140,43 +143,43 @@ void ofApp::keyPressed(int key) {
   int upper_key = toupper(key); // Standardize on upper case
 
   if (upper_key == kP1Forward) {
-    double angle = (p1_tank->body->GetAngle());
-    p1_tank->body->SetLinearVelocity(
+    double angle = (p1_tank_->body->GetAngle());
+    p1_tank_->body->SetLinearVelocity(
         b2Vec2(sin(angle) * kLinearVelocity, -cos(angle) * kLinearVelocity));
   } else if (upper_key == kP1Backward) {
-    double angle = (p1_tank->body->GetAngle());
-    p1_tank->body->SetLinearVelocity(
+    double angle = (p1_tank_->body->GetAngle());
+    p1_tank_->body->SetLinearVelocity(
         b2Vec2(-sin(angle) * kLinearVelocity, cos(angle) * kLinearVelocity));
   } else if (upper_key == kP1Left) {
-    p1_tank->body->SetAngularVelocity(-kAngularVelocity);
+    p1_tank_->body->SetAngularVelocity(-kAngularVelocity);
   } else if (upper_key == kP1Right) {
-    p1_tank->body->SetAngularVelocity(kAngularVelocity);
+    p1_tank_->body->SetAngularVelocity(kAngularVelocity);
   } else if (upper_key == kP2Forward) {
-    double angle = (p2_tank->body->GetAngle());
-    p2_tank->body->SetLinearVelocity(
+    double angle = (p2_tank_->body->GetAngle());
+    p2_tank_->body->SetLinearVelocity(
         b2Vec2(sin(angle) * kLinearVelocity, -cos(angle) * kLinearVelocity));
   } else if (upper_key == kP2Backward) {
-    double angle = (p2_tank->body->GetAngle());
-    p2_tank->body->SetLinearVelocity(
+    double angle = (p2_tank_->body->GetAngle());
+    p2_tank_->body->SetLinearVelocity(
         b2Vec2(-sin(angle) * kLinearVelocity, cos(angle) * kLinearVelocity));
   } else if (upper_key == kP2Left) {
-    p2_tank->body->SetAngularVelocity(-kAngularVelocity);
+    p2_tank_->body->SetAngularVelocity(-kAngularVelocity);
   } else if (upper_key == kP2Right) {
-    p2_tank->body->SetAngularVelocity(kAngularVelocity);
+    p2_tank_->body->SetAngularVelocity(kAngularVelocity);
   } else if (upper_key == kP1Shoot) {
-    p1_tank->shoot(box2d.getWorld());
+    p1_tank_->shoot(box2d_.getWorld());
     return;
   } else if (upper_key == kP2Shoot) {
-    p2_tank->shoot(box2d.getWorld());
+    p2_tank_->shoot(box2d_.getWorld());
     return;
-  } else if (is_round_over && upper_key == 'R') {
+  } else if (is_round_over_ && upper_key == 'R') {
     reset();
     return;
   } else {
     return;
   }
 
-  isKeyPressed[upper_key] = true;
+  is_key_pressed_[upper_key] = true;
 }
 
 //--------------------------------------------------------------
@@ -184,26 +187,26 @@ void ofApp::keyReleased(int key) {
   int upper_key = toupper(key); // Standardize on upper case
 
   if (upper_key == kP1Forward) {
-    p1_tank->body->SetLinearVelocity(b2Vec2(0, 0));
+    p1_tank_->body->SetLinearVelocity(b2Vec2(0, 0));
   } else if (upper_key == kP1Backward) {
-    p1_tank->body->SetLinearVelocity(b2Vec2(0, 0));
+    p1_tank_->body->SetLinearVelocity(b2Vec2(0, 0));
   } else if (upper_key == kP1Left) {
-    p1_tank->body->SetAngularVelocity(0);
+    p1_tank_->body->SetAngularVelocity(0);
   } else if (upper_key == kP1Right) {
-    p1_tank->body->SetAngularVelocity(0);
+    p1_tank_->body->SetAngularVelocity(0);
   } else if (upper_key == kP2Forward) {
-    p2_tank->body->SetLinearVelocity(b2Vec2(0, 0));
+    p2_tank_->body->SetLinearVelocity(b2Vec2(0, 0));
   } else if (upper_key == kP2Backward) {
-    p2_tank->body->SetLinearVelocity(b2Vec2(0, 0));
+    p2_tank_->body->SetLinearVelocity(b2Vec2(0, 0));
   } else if (upper_key == kP2Left) {
-    p2_tank->body->SetAngularVelocity(0);
+    p2_tank_->body->SetAngularVelocity(0);
   } else if (upper_key == kP2Right) {
-    p2_tank->body->SetAngularVelocity(0);
+    p2_tank_->body->SetAngularVelocity(0);
   } else {
     return;
   }
 
-  isKeyPressed[upper_key] = false;
+  is_key_pressed_[upper_key] = false;
 }
 
 //--------------------------------------------------------------
@@ -225,7 +228,7 @@ void ofApp::mouseEntered(int x, int y) {}
 void ofApp::mouseExited(int x, int y) {}
 
 //--------------------------------------------------------------
-void ofApp::windowResized(int w, int h) { box2d.createBounds(); }
+void ofApp::windowResized(int w, int h) { box2d_.createBounds(); }
 
 //--------------------------------------------------------------
 void ofApp::gotMessage(ofMessage msg) {}

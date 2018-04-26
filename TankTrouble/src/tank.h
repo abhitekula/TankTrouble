@@ -6,22 +6,22 @@ class Tank : public ofxBox2dPolygon {
 
   // Constants
   const string kBulletFilename = "data/bullet.txt";
-  const int kStartingAmmo = 10;
+  const int kStartingAmmo = 5;
   const double kStartingHealth = 1;
   const double kRefillInterval = 10; // How often to refill ammo in seconds
   const double kBulletDamage = 0.5;  // How much damage each bullet does
-  const double kBulletVelocity = 15;
+  const double kBulletVelocity = 10;
 
 private:
   typedef ofxBox2dPolygon super; //Allows for call to super.draw()
-
-  vector<ofPoint> loadPoints(string file);
-  void *createTank(string file, b2World *world);
-
   int ammo_;
   int id_;
   double health_;
   vector<ofxBox2dCircle *> bullets_;
+
+  vector<ofPoint> loadPoints(string file);
+
+  void *createTank(string file, b2World *world);
 
 public:
   Tank(int id, string file, b2World *world); // Initalize from file

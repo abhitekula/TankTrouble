@@ -15,7 +15,7 @@
 * Added score and FPS
 * Added round reset
 
-## Issues
+## Solved Issues
 * OpenFrameworks wrapper for Box2d does not behave the same as regular Box2d.
 * Needed to use ofxBox2dPolygon instead of typical Box2d body because the body would not display on the screen.
 * No draw method for Box2d body.

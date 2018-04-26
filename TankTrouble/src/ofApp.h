@@ -9,7 +9,7 @@ class ofApp : public ofBaseApp {
 
   // Constants
   const string kDefaultTankFilename = "data/tank.txt";
-  const double kLinearVelocity = 10;
+  const double kLinearVelocity = 5;
   const double kAngularVelocity = 3;
   const double kDamping = 1.5;
   const int kP1Forward = 'W';
@@ -21,14 +21,14 @@ class ofApp : public ofBaseApp {
   const int kP2Backward = OF_KEY_DOWN;
   const int kP2Right = OF_KEY_RIGHT;
   const int kP2Left = OF_KEY_LEFT;
-  const int kP2Shoot = OF_KEY_PAGE_DOWN;
+  const int kP2Shoot = '/'; //OF_KEY_PAGE_DOWN
 
 private:
-  bool isKeyPressed[255];
-  bool is_round_over;
-  Tank *p1_tank;
-  Tank *p2_tank;
-  ofxBox2d box2d;
+  bool is_key_pressed_[255];
+  bool is_round_over_;
+  Tank *p1_tank_;
+  Tank *p2_tank_;
+  ofxBox2d box2d_;
   int p1_score_ = 0;
   int p2_score_ = 0;
 
