@@ -9,6 +9,7 @@ class ofApp : public ofBaseApp {
 
   // Constants
   const string kDefaultTankFilename = "data/tank.txt";
+  const string kStartupSoundFilename = "data/sounds/startup2.mp3";
   const double kLinearVelocity = 10;
   const double kAngularVelocity = 3;
   const double kDamping = 1.5;
@@ -22,7 +23,7 @@ class ofApp : public ofBaseApp {
   const int kP2Right = OF_KEY_RIGHT;
   const int kP2Left = OF_KEY_LEFT;
   const int kP2Shoot = '/'; //OF_KEY_PAGE_DOWN
-  const int kFPS = 60;
+  const int kFPS = 30;
 
 private:
   bool is_key_pressed_[255];
@@ -32,6 +33,7 @@ private:
   ofxBox2d box2d_;
   int p1_score_ = 0;
   int p2_score_ = 0;
+  ofSoundPlayer* startup_sound_player_;
 
   void setupTanks();
 

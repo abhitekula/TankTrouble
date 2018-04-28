@@ -15,12 +15,18 @@ void ofApp::setup() {
   box2d_.createBounds();
   box2d_.setFPS(kFPS);
 
-  // Setup Collision Detecter
-  CollisionDetector *detector = new CollisionDetector();
-  box2d_.getWorld()->SetContactListener(detector);
+  // Setup Collision Detecters
+  CollisionDetector *collision_detector = new CollisionDetector();
+  box2d_.getWorld()->SetContactListener(collision_detector);
 
   // Create Tanks
   this->setupTanks();
+
+  //Startup Sound
+  startup_sound_player_ = new ofSoundPlayer();
+  startup_sound_player_->setMultiPlay(true);
+  startup_sound_player_->load(kStartupSoundFilename);
+  startup_sound_player_->play();
 }
 
 void ofApp::setupTanks() {
