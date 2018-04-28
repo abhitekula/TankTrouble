@@ -3,7 +3,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup() {
-  ofSetFrameRate(30);
+  ofSetFrameRate(kFPS);
   ofBackgroundHex(0xfdefc2);
   ofSetLogLevel(OF_LOG_NOTICE);
   ofSetVerticalSync(true);
@@ -13,7 +13,7 @@ void ofApp::setup() {
   box2d_.init();
   box2d_.setGravity(0, 0);
   box2d_.createBounds();
-  box2d_.setFPS(30.0);
+  box2d_.setFPS(kFPS);
 
   // Setup Collision Detecter
   CollisionDetector *detector = new CollisionDetector();

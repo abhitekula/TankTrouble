@@ -32,6 +32,9 @@
 * Shooting the bullet would register as a collision with the tank.
 * Segfault when deleting bullet
 
+## Unsolved Issues
+* When the framerate is set to above the max refresh rate of the monitor everything in the game is much slower. (Temp fix: Keep fps to 30)
+
 ## ToDo
 
 * Create the actual maze and place it on the screen.
