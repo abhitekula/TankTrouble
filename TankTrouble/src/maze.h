@@ -7,7 +7,7 @@ class Maze {
   // Constants
 
 private:
-  vector<ofxBox2dEdge *> mazeEdges;
+  vector<ofxBox2dEdge *> maze_edges_;
 
   void* createMaze(string file, b2World *world);
 

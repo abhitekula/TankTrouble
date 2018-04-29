@@ -22,25 +22,25 @@ void ofApp::setup() {
   this->setupTanks();
 
   //Setup Maze
-  maze = new ofxBox2dEdge();
-  b2BodyDef tank_body_def;
-  tank_body_def.type = b2_dynamicBody;
-  b2Body *tank_body = box2d_.getWorld()->CreateBody(&tank_body_def);
+  // maze = new ofxBox2dEdge();
+  // b2BodyDef tank_body_def;
+  // tank_body_def.type = b2_dynamicBody;
+  // b2Body *tank_body = box2d_.getWorld()->CreateBody(&tank_body_def);
 
-  b2PolygonShape rectangle;
-  rectangle.SetAsBox(0, 0, b2Vec2(0, 0), 0);
+  // b2PolygonShape rectangle;
+  // rectangle.SetAsBox(0, 0, b2Vec2(0, 0), 0);
 
-  b2FixtureDef tank_fixture;
-  tank_fixture.shape = &rectangle;
-  tank_fixture.density = 1;
+  // b2FixtureDef tank_fixture;
+  // tank_fixture.shape = &rectangle;
+  // tank_fixture.density = 1;
 
-  tank_body->CreateFixture(&tank_fixture);
+  // tank_body->CreateFixture(&tank_fixture);
 
-  vector<ofVec2f> tank_pts = loadPoints("data/mazes/maze2.txt");
-  maze->addVertexes(tank_pts);
-  maze->body = tank_body;
-  maze->body->SetType(b2_staticBody);
-  maze->create(box2d_.getWorld());
+  // vector<ofVec2f> tank_pts = loadPoints("data/mazes/maze2.txt");
+  // maze->addVertexes(tank_pts);
+  // maze->body = tank_body;
+  // maze->body->SetType(b2_staticBody);
+  // maze->create(box2d_.getWorld());
 
   //Startup Sound
   startup_sound_player_ = new ofSoundPlayer();
