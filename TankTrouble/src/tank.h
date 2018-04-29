@@ -1,4 +1,6 @@
 #pragma once
+
+#include <math.h>
 #include "ofMain.h"
 #include "ofxBox2d.h"
 
@@ -21,6 +23,8 @@ private:
 
   void *createTank(string file, b2World *world);
 
+  static vector<ofPoint> loadPoints(string file);
+
 public:
   Tank(int id, string file, b2World *world); // Initalize from file
 
@@ -31,8 +35,6 @@ public:
   double getHealth();
 
   vector<ofxBox2dCircle *> getBullets();
-
-  static vector<ofPoint> loadPoints(string file);
 
   bool isDead();
 

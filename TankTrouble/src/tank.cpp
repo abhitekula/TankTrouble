@@ -1,5 +1,4 @@
 #include "tank.h"
-#include <math.h>
 
 Tank::Tank(int id, string file, b2World *world) {
   id_ = id;

@@ -1,25 +1,5 @@
 #include "ofApp.h"
 
-vector<ofVec2f> loadPoints(string file) {
-  vector<ofVec2f> points;
-  float x;
-  float y;
-
-  ifstream inputFile;
-  inputFile.open(file);
-
-  if (inputFile.is_open()) {
-    while (!inputFile.eof()) {
-      inputFile >> x;
-      inputFile >> y;
-      points.push_back(ofVec2f(x, y));
-    }
-  }
-
-  inputFile.close();
-  return points;
-}
-
 //--------------------------------------------------------------
 void ofApp::setup() {
   ofSetFrameRate(kFPS);
