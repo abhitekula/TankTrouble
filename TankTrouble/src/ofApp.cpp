@@ -1,5 +1,24 @@
 #include "ofApp.h"
-#include <math.h>
+
+vector<ofVec2f> loadPoints(string file) {
+  vector<ofVec2f> points;
+  float x;
+  float y;
+
+  ifstream inputFile;
+  inputFile.open(file);
+
+  if (inputFile.is_open()) {
+    while (!inputFile.eof()) {
+      inputFile >> x;
+      inputFile >> y;
+      points.push_back(ofVec2f(x, y));
+    }
+  }
+
+  inputFile.close();
+  return points;
+}
 
 //--------------------------------------------------------------
 void ofApp::setup() {
@@ -22,12 +41,35 @@ void ofApp::setup() {
   // Create Tanks
   this->setupTanks();
 
+  //Setup Maze
+  maze = new ofxBox2dEdge();
+  b2BodyDef tank_body_def;
+  tank_body_def.type = b2_dynamicBody;
+  b2Body *tank_body = box2d_.getWorld()->CreateBody(&tank_body_def);
+
+  b2PolygonShape rectangle;
+  rectangle.SetAsBox(0, 0, b2Vec2(0, 0), 0);
+
+  b2FixtureDef tank_fixture;
+  tank_fixture.shape = &rectangle;
+  tank_fixture.density = 1;
+
+  tank_body->CreateFixture(&tank_fixture);
+
+  vector<ofVec2f> tank_pts = loadPoints("data/mazes/maze2.txt");
+  maze->addVertexes(tank_pts);
+  maze->body = tank_body;
+  maze->body->SetType(b2_staticBody);
+  maze->create(box2d_.getWorld());
+
   //Startup Sound
   startup_sound_player_ = new ofSoundPlayer();
   startup_sound_player_->setMultiPlay(true);
   startup_sound_player_->load(kStartupSoundFilename);
   startup_sound_player_->play();
 }
+
+
 
 void ofApp::setupTanks() {
   p1_tank_ = new Tank(1, kDefaultTankFilename, box2d_.getWorld());
@@ -130,6 +172,8 @@ void ofApp::draw() {
   ofDrawBitmapString(fps, ofGetWidth() - 100, 20);
 
   if (!is_round_over_) {
+    maze->draw();
+    
     ofSetHexColor(0xFF0000);
     ofFill();
     p1_tank_->draw();

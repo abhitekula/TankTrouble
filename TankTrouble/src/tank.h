@@ -19,8 +19,6 @@ private:
   double health_;
   vector<ofxBox2dCircle *> bullets_;
 
-  vector<ofPoint> loadPoints(string file);
-
   void *createTank(string file, b2World *world);
 
 public:
@@ -33,6 +31,8 @@ public:
   double getHealth();
 
   vector<ofxBox2dCircle *> getBullets();
+
+  static vector<ofPoint> loadPoints(string file);
 
   bool isDead();
 

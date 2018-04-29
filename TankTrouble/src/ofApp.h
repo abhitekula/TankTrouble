@@ -1,5 +1,6 @@
 #pragma once
 
+#include <math.h>
 #include "collisionDetector.h"
 #include "ofMain.h"
 #include "ofxBox2d.h"
@@ -34,6 +35,7 @@ private:
   int p1_score_ = 0;
   int p2_score_ = 0;
   ofSoundPlayer* startup_sound_player_;
+  ofxBox2dEdge* maze;
 
   void setupTanks();
 
