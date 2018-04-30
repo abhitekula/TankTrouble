@@ -8,10 +8,11 @@ class Maze {
 
 private:
   vector<ofxBox2dEdge *> maze_edges_;
+  vector<ofVec2f> starting_positions_;
 
-  void* createMaze(string file, b2World *world);
+  void createMaze(string file, b2World *world);
 
-  static vector<ofVec2f> loadPoints(string file);
+  static vector<ofVec2f> loadMazes(string file);
 
 public:
   Maze(string file, b2World *world); // Initalize from file

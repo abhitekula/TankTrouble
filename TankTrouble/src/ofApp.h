@@ -5,12 +5,14 @@
 #include "ofMain.h"
 #include "ofxBox2d.h"
 #include "tank.h"
+#include "maze.h"
 
 class ofApp : public ofBaseApp {
 
   // Constants
   const string kDefaultTankFilename = "data/tank.txt";
   const string kStartupSoundFilename = "data/sounds/startup2.mp3";
+  const string kMazeFilename = "data/mazes/maze2Edges.txt";
   const double kLinearVelocity = 10;
   const double kAngularVelocity = 3;
   const double kDamping = 1.5;
@@ -35,7 +37,7 @@ private:
   int p1_score_ = 0;
   int p2_score_ = 0;
   ofSoundPlayer* startup_sound_player_;
-  ofxBox2dEdge* maze;
+  Maze* maze_;
 
   void setupTanks();
 

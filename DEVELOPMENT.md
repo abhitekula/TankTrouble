@@ -31,6 +31,10 @@
 * Getting bullet to start at location of turret regardless of tanks current orientation.
 * Shooting the bullet would register as a collision with the tank.
 * Segfault when deleting bullet
+* Sounds would be played even after round ends
+* Maze would not triangulate properly so had to use ofxBox2dEdges instead
+* Getting maze file to have multiple edges instead of 1 big edge
+
 
 ## Unsolved Issues
 * When the framerate is set to above the max refresh rate of the monitor everything in the game is much slower. (Temp fix: Keep fps to 30)
