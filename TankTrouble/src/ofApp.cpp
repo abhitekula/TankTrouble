@@ -18,11 +18,12 @@ void ofApp::setup() {
   CollisionDetector *collision_detector = new CollisionDetector();
   box2d_.getWorld()->SetContactListener(collision_detector);
 
+  // Setup Maze
+  maze_ =
+      new Maze(kMazeEdgesFilename, kMazePositionsFilename, box2d_.getWorld());
+
   // Create Tanks
   this->setupTanks();
-
-  // Setup Maze
-  maze_ = new Maze(kMazeFilename, box2d_.getWorld());
 
   // Startup Sound
   startup_sound_player_ = new ofSoundPlayer();
@@ -38,14 +39,14 @@ void ofApp::setupTanks() {
   p1_tank_->body->SetLinearDamping(kDamping);
   p1_tank_->body->SetAngularDamping(kDamping);
   p1_tank_->body->SetBullet(true);
-  p1_tank_->setPosition(200, 250);
-  p1_tank_->setRotation(90);
+  p1_tank_->setPosition(maze_->getStartingPosition(true));
+  p1_tank_->setRotation(0);
 
   p2_tank_->body->SetLinearDamping(kDamping);
   p2_tank_->body->SetAngularDamping(kDamping);
   p2_tank_->body->SetBullet(true);
-  p2_tank_->setPosition(1000, 250);
-  p2_tank_->setRotation(-90);
+  p2_tank_->setPosition(maze_->getStartingPosition(false));
+  p2_tank_->setRotation(0);
 }
 
 //--------------------------------------------------------------
@@ -55,14 +56,10 @@ void ofApp::update() {
     cout << "P1 is Dead" << endl;
     p2_score_++;
     is_round_over_ = true;
-    p1_tank_->reset();
-    p2_tank_->reset();
   } else if (p2_tank_->isDead() && !is_round_over_) {
     cout << "P2 is Dead" << endl;
     p1_score_++;
     is_round_over_ = true;
-    p1_tank_->reset();
-    p2_tank_->reset();
   } else {
     box2d_.update();
     updateTanks();
@@ -117,10 +114,10 @@ void ofApp::reset() {
 
   is_round_over_ = false;
 
-  p1_tank_->setPosition(200, 250);
-  p1_tank_->setRotation(90);
-  p2_tank_->setPosition(1000, 250);
-  p2_tank_->setRotation(-90);
+  p1_tank_->setPosition(maze_->getStartingPosition(true));
+  p1_tank_->setRotation(0);
+  p2_tank_->setPosition(maze_->getStartingPosition(false));
+  p2_tank_->setRotation(0);
 }
 
 //--------------------------------------------------------------
@@ -148,6 +145,8 @@ void ofApp::draw() {
     string end_message = "Press 'R' to start the next round:";
     ofSetHexColor(000000);
     ofDrawBitmapString(end_message, ofGetWidth() / 2, ofGetHeight() / 2);
+    reset();
+    is_round_over_ = true;
   }
 }
 

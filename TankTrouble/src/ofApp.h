@@ -1,18 +1,19 @@
 #pragma once
 
-#include <math.h>
 #include "collisionDetector.h"
+#include "maze.h"
 #include "ofMain.h"
 #include "ofxBox2d.h"
 #include "tank.h"
-#include "maze.h"
+#include <math.h>
 
 class ofApp : public ofBaseApp {
 
   // Constants
   const string kDefaultTankFilename = "data/tank.txt";
   const string kStartupSoundFilename = "data/sounds/startup2.mp3";
-  const string kMazeFilename = "data/mazes/maze2Edges.txt";
+  const string kMazeEdgesFilename = "data/mazes/maze2Edges.txt";
+  const string kMazePositionsFilename = "data/mazes/maze2StartingPositions.txt";
   const double kLinearVelocity = 10;
   const double kAngularVelocity = 3;
   const double kDamping = 1.5;
@@ -25,7 +26,7 @@ class ofApp : public ofBaseApp {
   const int kP2Backward = OF_KEY_DOWN;
   const int kP2Right = OF_KEY_RIGHT;
   const int kP2Left = OF_KEY_LEFT;
-  const int kP2Shoot = '/'; //OF_KEY_PAGE_DOWN
+  const int kP2Shoot = '/'; // OF_KEY_PAGE_DOWN
   const int kFPS = 30;
 
 private:
@@ -36,8 +37,8 @@ private:
   ofxBox2d box2d_;
   int p1_score_ = 0;
   int p2_score_ = 0;
-  ofSoundPlayer* startup_sound_player_;
-  Maze* maze_;
+  ofSoundPlayer *startup_sound_player_;
+  Maze *maze_;
 
   void setupTanks();
 

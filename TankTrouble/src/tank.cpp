@@ -28,6 +28,7 @@ void *Tank::createTank(string file, b2World *world) {
   setPhysics(0.7, 0.5, 0.5);
   triangulatePoly();
   body = tank_body;
+  body->SetBullet(true);
   body->SetType(b2_dynamicBody);
   create(world);
 }
