@@ -27,10 +27,10 @@ void *Tank::createTank(string file, b2World *world) {
   addVertices(tank_pts);
   triangulatePoly();
   body = tank_body;
-  create(world);
   setPhysics(0.7, 0.5, 0.5);
   body->SetBullet(true);
   body->SetType(b2_dynamicBody);
+  create(world);
   body->SetLinearDamping(kDamping);
   body->SetAngularDamping(kDamping);
 }
