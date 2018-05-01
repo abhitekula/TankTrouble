@@ -5,6 +5,7 @@
 #include "ofMain.h"
 #include "ofxBox2d.h"
 #include "tank.h"
+#include "powerup.h"
 #include <math.h>
 
 class ofApp : public ofBaseApp {
@@ -41,6 +42,7 @@ private:
   int p1_score_ = 0;
   int p2_score_ = 0;
   ofSoundPlayer *startup_sound_player_;
+  vector<Powerup*> powerups_;
   Maze *maze_;
 
   void setupTanks();

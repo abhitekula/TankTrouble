@@ -151,6 +151,10 @@ void ofApp::draw() {
     ofSetHexColor(0x0000FF);
     ofFill();
     p2_tank_->draw();
+
+    ofSetHexColor(0x00FF00);
+    ofFill();
+    
   } else {
     string end_message = "Press 'R' to start the next round:";
     ofSetHexColor(000000);
@@ -194,7 +198,7 @@ void ofApp::keyPressed(int key) {
   } else if (upper_key == kP2Shoot && !paused_) {
     p2_tank_->shoot(box2d_.getWorld());
     return;
-  } else if ( upper_key == 'R') {
+  } else if (is_round_over_ && upper_key == 'R') {
     setupMaze();
     reset();
     return;
