@@ -29,6 +29,7 @@ class ofApp : public ofBaseApp {
   const int kP2Left = OF_KEY_LEFT;
   const int kP2Shoot = '/'; // OF_KEY_PAGE_DOWN
   const int kFPS = 30;
+  
 
 private:
   bool is_key_pressed_[255];

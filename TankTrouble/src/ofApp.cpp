@@ -35,7 +35,9 @@ void ofApp::setupMaze() {
   if(maze_) {
     delete maze_;
   }
+
   int index = rand() % kNumMazes + 1;
+  cout << index << endl;
   maze_ = new Maze((kMazeEdgesFilename + to_string(index) + "Edges.txt"),
                  (kMazePositionsFilename + to_string(index) + "StartingPositions.txt"),
                  box2d_.getWorld());
@@ -193,9 +195,9 @@ void ofApp::keyPressed(int key) {
   } else if (upper_key == kP2Shoot && !paused_) {
     p2_tank_->shoot(box2d_.getWorld());
     return;
-  } else if (is_round_over_ && upper_key == 'R') {
-    reset();
+  } else if (upper_key == 'R') {
     setupMaze();
+    reset();
     return;
   } else if (upper_key == 'P') {
     paused_ ? paused_ = false : paused_ = true;

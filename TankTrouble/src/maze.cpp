@@ -9,6 +9,8 @@ Maze::~Maze() {
   for(auto edge : maze_edges_) {
     edge->destroy();
   }
+  p1_starting_positions_.clear();
+  p2_starting_positions_.clear();
 }
 
 void Maze::createMaze(string file, b2World *world) {
@@ -70,6 +72,9 @@ void Maze::draw() {
 }
 
 void Maze::loadStartingPositions(string file) {
+  p1_starting_positions_.clear();
+  p2_starting_positions_.clear();
+  cout << file << endl;
   float x1, y1, x2, y2;
 
   ifstream inputFile;
@@ -90,6 +95,9 @@ void Maze::loadStartingPositions(string file) {
 }
 
 ofVec2f Maze::getStartingPosition(bool player_one) {
+  cout << p1_starting_positions_.size() << endl;
+  cout << p2_starting_positions_.size() << endl;
+
   if (player_one) {
     return p1_starting_positions_[rand() % p1_starting_positions_.size()];
   } else {
