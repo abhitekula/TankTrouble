@@ -40,12 +40,11 @@ private:
   int p1_score_ = 0;
   int p2_score_ = 0;
   ofSoundPlayer *startup_sound_player_;
-  vector<Maze*> mazes_;
-  Maze *current_maze_;
+  Maze *maze_;
 
   void setupTanks();
 
-  void setupMazes();
+  void setupMaze();
 
   void updateTanks();
 

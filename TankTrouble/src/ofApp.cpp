@@ -19,7 +19,7 @@ void ofApp::setup() {
   box2d_.getWorld()->SetContactListener(collision_detector);
 
   // Setup Maze
-  setupMazes();
+  setupMaze();
 
   // Create Tanks
   setupTanks();
@@ -31,15 +31,14 @@ void ofApp::setup() {
   startup_sound_player_->play();
 }
 
-void ofApp::setupMazes() {
-  for (int i = 1; i <= kNumMazes; i++) {
-    Maze *maze =
-        new Maze((kMazeEdgesFilename + to_string(i) + "Edges.txt"),
-                 (kMazePositionsFilename + to_string(i) + "StartingPositions.txt"),
-                 box2d_.getWorld());
-    mazes_.push_back(maze);
+void ofApp::setupMaze() {
+  if(maze_) {
+    delete maze_;
   }
-  current_maze_ = mazes_[rand() % mazes_.size()];
+  int index = rand() % kNumMazes + 1;
+  maze_ = new Maze((kMazeEdgesFilename + to_string(index) + "Edges.txt"),
+                 (kMazePositionsFilename + to_string(index) + "StartingPositions.txt"),
+                 box2d_.getWorld());
 }
 
 void ofApp::setupTanks() {
@@ -49,13 +48,13 @@ void ofApp::setupTanks() {
   p1_tank_->body->SetLinearDamping(kDamping);
   p1_tank_->body->SetAngularDamping(kDamping);
   p1_tank_->body->SetBullet(true);
-  p1_tank_->setPosition(current_maze_->getStartingPosition(true));
+  p1_tank_->setPosition(maze_->getStartingPosition(true));
   p1_tank_->setRotation(0);
 
   p2_tank_->body->SetLinearDamping(kDamping);
   p2_tank_->body->SetAngularDamping(kDamping);
   p2_tank_->body->SetBullet(true);
-  p2_tank_->setPosition(current_maze_->getStartingPosition(false));
+  p2_tank_->setPosition(maze_->getStartingPosition(false));
   p2_tank_->setRotation(0);
 }
 
@@ -124,9 +123,9 @@ void ofApp::reset() {
 
   is_round_over_ = false;
 
-  p1_tank_->setPosition(current_maze_->getStartingPosition(true));
+  p1_tank_->setPosition(maze_->getStartingPosition(true));
   p1_tank_->setRotation(0);
-  p2_tank_->setPosition(current_maze_->getStartingPosition(false));
+  p2_tank_->setPosition(maze_->getStartingPosition(false));
   p2_tank_->setRotation(0);
 }
 
@@ -142,7 +141,7 @@ void ofApp::draw() {
   ofDrawBitmapString(fps, ofGetWidth() - 100, 20);
 
   if (!is_round_over_) {
-    current_maze_->draw();
+    maze_->draw();
 
     ofSetHexColor(0xFF0000);
     ofFill();
@@ -196,6 +195,7 @@ void ofApp::keyPressed(int key) {
     return;
   } else if (is_round_over_ && upper_key == 'R') {
     reset();
+    setupMaze();
     return;
   } else if (upper_key == 'P') {
     paused_ ? paused_ = false : paused_ = true;

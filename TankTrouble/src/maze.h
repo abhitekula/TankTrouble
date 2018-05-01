@@ -23,6 +23,8 @@ private:
 public:
   Maze(string edge_file, string positions_file, b2World* world); // Initalize from file
 
+  ~Maze(); // Initalize from file
+
   void draw();
 
   ofVec2f getStartingPosition(bool player_one);

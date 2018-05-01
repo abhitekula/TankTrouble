@@ -5,6 +5,12 @@ Maze::Maze(string edge_file, string positions_file, b2World *world) {
   loadStartingPositions(positions_file);
 }
 
+Maze::~Maze() {
+  for(auto edge : maze_edges_) {
+    edge->destroy();
+  }
+}
+
 void Maze::createMaze(string file, b2World *world) {
   vector<ofVec2f> points;
   float x;
