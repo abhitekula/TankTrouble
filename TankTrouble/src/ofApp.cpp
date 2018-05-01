@@ -60,7 +60,7 @@ void ofApp::update() {
     cout << "P2 is Dead" << endl;
     p1_score_++;
     is_round_over_ = true;
-  } else {
+  } else if (!paused) {
     box2d_.update();
     updateTanks();
   }
@@ -186,6 +186,9 @@ void ofApp::keyPressed(int key) {
     return;
   } else if (upper_key == 'R') {
     reset();
+    return;
+  } else if (upper_key == 'P') {
+    paused ? paused = false : paused = true;
     return;
   } else {
     return;

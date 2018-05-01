@@ -32,6 +32,7 @@ class ofApp : public ofBaseApp {
 private:
   bool is_key_pressed_[255];
   bool is_round_over_;
+  bool paused = false;
   Tank *p1_tank_;
   Tank *p2_tank_;
   ofxBox2d box2d_;

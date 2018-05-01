@@ -14,6 +14,9 @@
 * Add collision detection of missile with other tank.
 * Added score and FPS
 * Added round reset
+* Create the actual maze and place it on the screen.
+* Add audio and sound effects.
+* Add Pause Menu.
 
 ## Solved Issues
 * OpenFrameworks wrapper for Box2d does not behave the same as regular Box2d.
@@ -43,8 +46,5 @@
 
 ## ToDo
 
-* Create the actual maze and place it on the screen.
 * Resize tanks and elements of screen when windows is resized.
-* Add audio and sound effects.
-* Add Pause Menu.
 * Powerups.
