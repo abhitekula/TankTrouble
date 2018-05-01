@@ -32,14 +32,15 @@ void ofApp::setup() {
 }
 
 void ofApp::setupMaze() {
-  if(maze_) {
+  if (maze_) {
     delete maze_;
   }
 
   int index = rand() % kNumMazes + 1;
-  maze_ = new Maze((kMazeEdgesFilename + to_string(index) + "Edges.txt"),
-                 (kMazePositionsFilename + to_string(index) + "StartingPositions.txt"),
-                 box2d_.getWorld());
+  maze_ = new Maze(
+      (kMazeEdgesFilename + to_string(index) + "Edges.txt"),
+      (kMazePositionsFilename + to_string(index) + "StartingPositions.txt"),
+      box2d_.getWorld());
 }
 
 void ofApp::setupTanks() {
@@ -64,9 +65,9 @@ void ofApp::update() {
   } else if (!paused_) {
     box2d_.update();
     updateTanks();
-    
-    //Randomly add powerups
-    if(rand() % 1000 < kPowerupChance) {
+
+    // Randomly add powerups
+    if (rand() % 1000 < kPowerupChance) {
       powerups_.push_back(new Powerup(box2d_.getWorld()));
     }
   }
@@ -118,8 +119,10 @@ void ofApp::reset() {
   p1_tank_->reset();
   p2_tank_->reset();
 
-  for(auto powerup :powerups_) {
-    powerup->destroy();
+  for (auto powerup : powerups_) {
+    if (powerup) {
+      powerup->destroy();
+    }
   }
   powerups_.clear();
 
@@ -156,7 +159,9 @@ void ofApp::draw() {
     ofSetHexColor(0x00FF00);
     ofFill();
     for (auto powerup : powerups_) {
-      powerup->draw();
+      if (powerup) {
+        powerup->draw();
+      }
     }
   } else {
     string end_message = "Press 'R' to start the next round:";

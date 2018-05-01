@@ -45,6 +45,7 @@
 
 ## Unsolved Issues
 * When the framerate is set to above the max refresh rate of the monitor everything in the game is much slower. (Temp fix: Keep fps to 30)
+* Segfault after removing powerup
 
 ## ToDo
 

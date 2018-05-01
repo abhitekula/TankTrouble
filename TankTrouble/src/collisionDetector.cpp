@@ -38,10 +38,12 @@ void CollisionDetector::BeginContact(b2Contact *contact) {
 
   if (dynamic_cast<Powerup *>(bodyA)) {
     cout << "Powerup Collision Detected" << endl;
+    delete dynamic_cast<Powerup *>(bodyA);
   }
 
   if (dynamic_cast<Powerup *>(bodyB)) {
     cout << "Powerup Collision Detected" << endl;
+    delete dynamic_cast<Powerup *>(bodyB);
   }
 }
 
