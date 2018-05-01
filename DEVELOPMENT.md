@@ -34,6 +34,8 @@
 * Sounds would be played even after round ends
 * Maze would not triangulate properly so had to use ofxBox2dEdges instead
 * Getting maze file to have multiple edges instead of 1 big edge
+* Tanks would start inside each other
+* Deleting the bullets that hit the tank would cause segfault
 
 
 ## Unsolved Issues

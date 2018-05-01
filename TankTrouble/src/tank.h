@@ -26,6 +26,8 @@ private:
 
   static vector<ofPoint> loadPoints(string file);
 
+  void removeBullets(); //To remove the bullets that hit the tank
+
 public:
   Tank(int id, string file, b2World *world); // Initalize from file
 

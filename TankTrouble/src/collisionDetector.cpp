@@ -40,6 +40,7 @@ void CollisionDetector::BeginContact(b2Contact *contact) {
   if (tank && bullet) {
     cout << "Tank " << tank->getId() << " is Hit!!!" << endl;
     tank->hit();
+    bullet->body->SetUserData(nullptr);
   }
 }
 
