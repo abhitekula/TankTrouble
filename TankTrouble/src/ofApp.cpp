@@ -60,7 +60,7 @@ void ofApp::update() {
     cout << "P2 is Dead" << endl;
     p1_score_++;
     is_round_over_ = true;
-  } else if (!paused) {
+  } else if (!paused_) {
     box2d_.update();
     updateTanks();
   }
@@ -178,17 +178,17 @@ void ofApp::keyPressed(int key) {
     p2_tank_->body->SetAngularVelocity(-kAngularVelocity);
   } else if (upper_key == kP2Right) {
     p2_tank_->body->SetAngularVelocity(kAngularVelocity);
-  } else if (upper_key == kP1Shoot) {
+  } else if (upper_key == kP1Shoot && !paused_) {
     p1_tank_->shoot(box2d_.getWorld());
     return;
-  } else if (upper_key == kP2Shoot) {
+  } else if (upper_key == kP2Shoot && !paused_) {
     p2_tank_->shoot(box2d_.getWorld());
     return;
-  } else if (upper_key == 'R') {
+  } else if (is_round_over_ && upper_key == 'R') {
     reset();
     return;
   } else if (upper_key == 'P') {
-    paused ? paused = false : paused = true;
+    paused_ ? paused_ = false : paused_ = true;
     return;
   } else {
     return;

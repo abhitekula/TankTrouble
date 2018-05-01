@@ -108,7 +108,13 @@ void Tank::shoot(b2World *world) {
 
 void Tank::draw() {
   super::draw();
+  removeBullets();
+  for (auto bullet : bullets_) {
+    bullet->draw();
+  }
+}
 
+void Tank::removeBullets() {
   vector<int> indexes_to_remove;
   for(int i = 0; i < bullets_.size(); i++) {
     if(!bullets_[i]->body->GetUserData()) {
@@ -119,9 +125,5 @@ void Tank::draw() {
   for(auto i: indexes_to_remove) {
     bullets_[i]->destroy();
     bullets_.erase(bullets_.begin() + i);
-  }
-
-  for (auto bullet : bullets_) {
-    bullet->draw();
   }
 }

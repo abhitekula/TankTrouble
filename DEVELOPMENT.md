@@ -39,6 +39,7 @@
 * Getting maze file to have multiple edges instead of 1 big edge
 * Tanks would start inside each other
 * Deleting the bullets that hit the tank would cause segfault
+* Shooting when paused caused a segfault
 
 
 ## Unsolved Issues
