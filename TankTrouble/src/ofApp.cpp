@@ -46,17 +46,8 @@ void ofApp::setupTanks() {
   p1_tank_ = new Tank(1, kDefaultTankFilename, box2d_.getWorld());
   p2_tank_ = new Tank(2, kDefaultTankFilename, box2d_.getWorld());
 
-  p1_tank_->body->SetLinearDamping(kDamping);
-  p1_tank_->body->SetAngularDamping(kDamping);
-  p1_tank_->body->SetBullet(true);
   p1_tank_->setPosition(maze_->getStartingPosition(true));
-  p1_tank_->setRotation(0);
-
-  p2_tank_->body->SetLinearDamping(kDamping);
-  p2_tank_->body->SetAngularDamping(kDamping);
-  p2_tank_->body->SetBullet(true);
   p2_tank_->setPosition(maze_->getStartingPosition(false));
-  p2_tank_->setRotation(0);
 }
 
 //--------------------------------------------------------------

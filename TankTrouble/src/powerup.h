@@ -9,6 +9,7 @@ class Powerup : public ofxBox2dRect {
   const int kRectSize = 30;
   enum Power { kSpeed, kAmmo, kBulletSpeed };
   const int numPowerupTypes = 3;
+  const double kDamping = 5;
 
 private:
   typedef ofxBox2dPolygon super; // Allows for call to super.draw()

@@ -2,6 +2,7 @@
 #include "ofMain.h"
 #include "ofxBox2d.h"
 #include "tank.h"
+#include "powerup.h"
 
 class CollisionDetector : public b2ContactListener {
 

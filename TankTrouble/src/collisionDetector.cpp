@@ -35,6 +35,14 @@ void CollisionDetector::BeginContact(b2Contact *contact) {
     tank->hit();
     bullet->body->SetUserData(nullptr);
   }
+
+  if (dynamic_cast<Powerup *>(bodyA)) {
+    cout << "Powerup Collision Detected" << endl;
+  }
+
+  if (dynamic_cast<Powerup *>(bodyB)) {
+    cout << "Powerup Collision Detected" << endl;
+  }
 }
 
 void CollisionDetector::setup() {

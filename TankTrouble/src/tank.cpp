@@ -25,12 +25,14 @@ void *Tank::createTank(string file, b2World *world) {
 
   vector<ofPoint> tank_pts = loadPoints(file);
   addVertices(tank_pts);
-  setPhysics(0.7, 0.5, 0.5);
   triangulatePoly();
   body = tank_body;
+  create(world);
+  setPhysics(0.7, 0.5, 0.5);
   body->SetBullet(true);
   body->SetType(b2_dynamicBody);
-  create(world);
+  body->SetLinearDamping(kDamping);
+  body->SetAngularDamping(kDamping);
 }
 
 vector<ofPoint> Tank::loadPoints(string file) {

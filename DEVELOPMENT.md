@@ -40,6 +40,7 @@
 * Tanks would start inside each other
 * Deleting the bullets that hit the tank would cause segfault
 * Shooting when paused caused a segfault
+* When powerups were removed they would stop showing up on screen but tanks would still hit them.
 
 
 ## Unsolved Issues

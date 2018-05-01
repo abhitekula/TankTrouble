@@ -18,7 +18,6 @@ class ofApp : public ofBaseApp {
   const int kNumMazes = 4;
   const double kLinearVelocity = 10;
   const double kAngularVelocity = 3;
-  const double kDamping = 1.5;
   const int kP1Forward = 'W';
   const int kP1Backward = 'S';
   const int kP1Right = 'D';

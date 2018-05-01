@@ -14,6 +14,7 @@ class Tank : public ofxBox2dPolygon {
   const double kBulletDamage = 0.5;  // How much damage each bullet does
   const double kBulletVelocity = 10;
   const double kBulletDistanceFromTank = 130;
+  const double kDamping = 1.5;
 
 private:
   typedef ofxBox2dPolygon super; //Allows for call to super.draw()
