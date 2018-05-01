@@ -12,8 +12,8 @@ class ofApp : public ofBaseApp {
   // Constants
   const string kDefaultTankFilename = "data/tank.txt";
   const string kStartupSoundFilename = "data/sounds/startup2.mp3";
-  const string kMazeEdgesFilename = "data/mazes/maze2Edges.txt";
-  const string kMazePositionsFilename = "data/mazes/maze2StartingPositions.txt";
+  const string kMazeEdgesFilename = "data/mazes/maze1Edges.txt";
+  const string kMazePositionsFilename = "data/mazes/maze1StartingPositions.txt";
   const double kLinearVelocity = 10;
   const double kAngularVelocity = 3;
   const double kDamping = 1.5;
