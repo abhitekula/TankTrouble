@@ -14,7 +14,7 @@ class ofApp : public ofBaseApp {
   const string kStartupSoundFilename = "data/sounds/startup2.mp3";
   const string kMazeEdgesFilename = "data/mazes/maze";
   const string kMazePositionsFilename = "data/mazes/maze";
-  const int kNumMazes = 2;
+  const int kNumMazes = 4;
   const double kLinearVelocity = 10;
   const double kAngularVelocity = 3;
   const double kDamping = 1.5;
