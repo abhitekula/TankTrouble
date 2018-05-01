@@ -19,17 +19,27 @@ void ofApp::setup() {
   box2d_.getWorld()->SetContactListener(collision_detector);
 
   // Setup Maze
-  maze_ =
-      new Maze(kMazeEdgesFilename, kMazePositionsFilename, box2d_.getWorld());
+  setupMazes();
 
   // Create Tanks
-  this->setupTanks();
+  setupTanks();
 
   // Startup Sound
   startup_sound_player_ = new ofSoundPlayer();
   startup_sound_player_->setMultiPlay(true);
   startup_sound_player_->load(kStartupSoundFilename);
   startup_sound_player_->play();
+}
+
+void ofApp::setupMazes() {
+  for (int i = 1; i <= kNumMazes; i++) {
+    Maze *maze =
+        new Maze((kMazeEdgesFilename + to_string(i) + "Edges.txt"),
+                 (kMazePositionsFilename + to_string(i) + "StartingPositions.txt"),
+                 box2d_.getWorld());
+    mazes_.push_back(maze);
+  }
+  current_maze_ = mazes_[rand() % mazes_.size()];
 }
 
 void ofApp::setupTanks() {
@@ -39,13 +49,13 @@ void ofApp::setupTanks() {
   p1_tank_->body->SetLinearDamping(kDamping);
   p1_tank_->body->SetAngularDamping(kDamping);
   p1_tank_->body->SetBullet(true);
-  p1_tank_->setPosition(maze_->getStartingPosition(true));
+  p1_tank_->setPosition(current_maze_->getStartingPosition(true));
   p1_tank_->setRotation(0);
 
   p2_tank_->body->SetLinearDamping(kDamping);
   p2_tank_->body->SetAngularDamping(kDamping);
   p2_tank_->body->SetBullet(true);
-  p2_tank_->setPosition(maze_->getStartingPosition(false));
+  p2_tank_->setPosition(current_maze_->getStartingPosition(false));
   p2_tank_->setRotation(0);
 }
 
@@ -114,9 +124,9 @@ void ofApp::reset() {
 
   is_round_over_ = false;
 
-  p1_tank_->setPosition(maze_->getStartingPosition(true));
+  p1_tank_->setPosition(current_maze_->getStartingPosition(true));
   p1_tank_->setRotation(0);
-  p2_tank_->setPosition(maze_->getStartingPosition(false));
+  p2_tank_->setPosition(current_maze_->getStartingPosition(false));
   p2_tank_->setRotation(0);
 }
 
@@ -132,7 +142,7 @@ void ofApp::draw() {
   ofDrawBitmapString(fps, ofGetWidth() - 100, 20);
 
   if (!is_round_over_) {
-    maze_->draw();
+    current_maze_->draw();
 
     ofSetHexColor(0xFF0000);
     ofFill();

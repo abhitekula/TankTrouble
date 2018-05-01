@@ -12,8 +12,9 @@ class ofApp : public ofBaseApp {
   // Constants
   const string kDefaultTankFilename = "data/tank.txt";
   const string kStartupSoundFilename = "data/sounds/startup2.mp3";
-  const string kMazeEdgesFilename = "data/mazes/maze1Edges.txt";
-  const string kMazePositionsFilename = "data/mazes/maze1StartingPositions.txt";
+  const string kMazeEdgesFilename = "data/mazes/maze";
+  const string kMazePositionsFilename = "data/mazes/maze";
+  const int kNumMazes = 2;
   const double kLinearVelocity = 10;
   const double kAngularVelocity = 3;
   const double kDamping = 1.5;
@@ -33,15 +34,18 @@ private:
   bool is_key_pressed_[255];
   bool is_round_over_;
   bool paused_ = false;
+  ofxBox2d box2d_;
   Tank *p1_tank_;
   Tank *p2_tank_;
-  ofxBox2d box2d_;
   int p1_score_ = 0;
   int p2_score_ = 0;
   ofSoundPlayer *startup_sound_player_;
-  Maze *maze_;
+  vector<Maze*> mazes_;
+  Maze *current_maze_;
 
   void setupTanks();
+
+  void setupMazes();
 
   void updateTanks();
 
