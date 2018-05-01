@@ -13,6 +13,7 @@ class Tank : public ofxBox2dPolygon {
   const double kRefillInterval = 10; // How often to refill ammo in seconds
   const double kBulletDamage = 0.5;  // How much damage each bullet does
   const double kBulletVelocity = 10;
+  const double kBulletDistanceFromTank = 130;
 
 private:
   typedef ofxBox2dPolygon super; //Allows for call to super.draw()

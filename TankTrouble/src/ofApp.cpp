@@ -184,7 +184,7 @@ void ofApp::keyPressed(int key) {
   } else if (upper_key == kP2Shoot) {
     p2_tank_->shoot(box2d_.getWorld());
     return;
-  } else if (is_round_over_ && upper_key == 'R') {
+  } else if (upper_key == 'R') {
     reset();
     return;
   } else {

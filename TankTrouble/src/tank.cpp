@@ -91,8 +91,10 @@ void Tank::shoot(b2World *world) {
     bullet->body->SetBullet(true);
 
     double tank_angle = this->body->GetAngle();
-    bullet->setup(world, this->getPosition().x + 135 * sin(tank_angle),
-                  this->getPosition().y + 135 * -cos(tank_angle), 10);
+    bullet->setup(
+        world,
+        this->getPosition().x + kBulletDistanceFromTank * sin(tank_angle),
+        this->getPosition().y + kBulletDistanceFromTank * -cos(tank_angle), 10);
     bullet->setRotation(this->getRotation());
     double angle = (bullet->body->GetAngle());
     bullet->setVelocity(sin(angle) * kBulletVelocity,
