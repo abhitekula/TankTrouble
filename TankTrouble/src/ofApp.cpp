@@ -73,6 +73,11 @@ void ofApp::update() {
   } else if (!paused_) {
     box2d_.update();
     updateTanks();
+    
+    //Randomly add powerups
+    if(rand() % 1000 < kPowerupChance) {
+      powerups_.push_back(new Powerup(box2d_.getWorld()));
+    }
   }
 }
 
@@ -122,6 +127,11 @@ void ofApp::reset() {
   p1_tank_->reset();
   p2_tank_->reset();
 
+  for(auto powerup :powerups_) {
+    powerup->destroy();
+  }
+  powerups_.clear();
+
   is_round_over_ = false;
 
   p1_tank_->setPosition(maze_->getStartingPosition(true));
@@ -154,7 +164,9 @@ void ofApp::draw() {
 
     ofSetHexColor(0x00FF00);
     ofFill();
-    
+    for (auto powerup : powerups_) {
+      powerup->draw();
+    }
   } else {
     string end_message = "Press 'R' to start the next round:";
     ofSetHexColor(000000);

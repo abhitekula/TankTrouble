@@ -6,7 +6,7 @@
 class Powerup : public ofxBox2dRect {
 
   // Constants
-  const int kRectSize = 20;
+  const int kRectSize = 30;
   enum Power { kSpeed, kAmmo, kBulletSpeed };
   const int numPowerupTypes = 3;
 
