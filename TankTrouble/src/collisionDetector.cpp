@@ -7,6 +7,7 @@ void CollisionDetector::BeginContact(b2Contact *contact) {
 
   Tank *tank = nullptr;
   ofxBox2dCircle *bullet = nullptr;
+  Powerup *powerup = nullptr;
 
   auto bodyA = static_cast<ofxBox2dBaseShape *>(
       contact->GetFixtureA()->GetBody()->GetUserData());
@@ -31,19 +32,19 @@ void CollisionDetector::BeginContact(b2Contact *contact) {
     bullet = dynamic_cast<ofxBox2dCircle *>(bodyB);
   }
 
-  if (tank && bullet) {
-    tank->hit();
-    bullet->body->SetUserData(nullptr);
-  }
-
   if (dynamic_cast<Powerup *>(bodyA)) {
     cout << "Powerup Collision Detected" << endl;
-    delete dynamic_cast<Powerup *>(bodyA);
+    bodyA->body->SetUserData(nullptr); //So we can remove the powerup after it has been used
   }
 
   if (dynamic_cast<Powerup *>(bodyB)) {
     cout << "Powerup Collision Detected" << endl;
-    delete dynamic_cast<Powerup *>(bodyB);
+    bodyB->body->SetUserData(nullptr); //So we can remove the powerup after it has been used
+  }
+
+  if (tank && bullet) {
+    tank->hit();
+    bullet->body->SetUserData(nullptr); //So we can remove the bullet after it hits a tank
   }
 }
 
