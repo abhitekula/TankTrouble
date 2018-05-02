@@ -16,5 +16,5 @@ private:
   void setup();
 
 public:
-  void BeginContact(b2Contact *contact);
+  void BeginContact(b2Contact *contact); //Overridden Method
 };

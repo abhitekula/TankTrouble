@@ -27,7 +27,7 @@ class ofApp : public ofBaseApp {
   const int kP2Left = OF_KEY_LEFT;
   const int kP2Shoot = '/'; // OF_KEY_PAGE_DOWN
   const int kFPS = 30;
-  const double kPowerupChance = 3; //Chance that new powerup spawns
+  const double kPowerupChance = 10; //Chance that new powerup spawns
   
 
 private:
@@ -50,6 +50,8 @@ private:
   void updateTanks();
 
   void reset();
+
+  void removePowerups(); //To remove the powerups that have been used
 
 public:
   void setup();

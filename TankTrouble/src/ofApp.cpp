@@ -65,6 +65,7 @@ void ofApp::update() {
   } else if (!paused_) {
     box2d_.update();
     updateTanks();
+    removePowerups();
 
     // Randomly add powerups
     if (rand() % 1000 < kPowerupChance) {
@@ -120,14 +121,26 @@ void ofApp::updateTanks() {
   }
 }
 
+void ofApp::removePowerups() {
+  vector<int> indexes_to_remove;
+  for (int i = 0; i < powerups_.size(); i++) {
+    if (!powerups_[i]->body->GetUserData()) {
+      indexes_to_remove.push_back(i);
+    }
+  }
+
+  for (auto i : indexes_to_remove) {
+    powerups_[i]->destroy();
+    powerups_.erase(powerups_.begin() + i);
+  }
+}
+
 void ofApp::reset() {
   p1_tank_->reset();
   p2_tank_->reset();
 
   for (auto powerup : powerups_) {
-    if (powerup) {
-      powerup->destroy();
-    }
+    powerup->destroy();
   }
   powerups_.clear();
 
@@ -161,12 +174,10 @@ void ofApp::draw() {
     ofFill();
     p2_tank_->draw();
 
-    ofSetHexColor(0x00FF00);
-    ofFill();
     for (auto powerup : powerups_) {
-      if (powerup) {
-        powerup->draw();
-      }
+      ofSetHexColor(powerup->getColor());
+      ofFill();
+      powerup->draw();
     }
   } else {
     string end_message = "Press 'R' to start the next round:";

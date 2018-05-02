@@ -2,7 +2,7 @@
 
 Powerup::Powerup(b2World *world) {
   createPowerup(world);
-  body->SetUserData(this); //For the collision detection
+  body->SetUserData(this); // For the collision detection
 }
 
 void Powerup::createPowerup(b2World *world) {
@@ -12,15 +12,25 @@ void Powerup::createPowerup(b2World *world) {
   setPhysics(5, 0.5, 0.5);
   body->SetType(b2_dynamicBody);
   body->SetLinearDamping(kDamping);
-  body->SetAngularDamping(kDamping);  
-  
+  body->SetAngularDamping(kDamping);
+
   type_ = Power(rand() % numPowerupTypes);
 }
 
-Powerup::~Powerup() {
-  destroy();
-}
+Powerup::~Powerup() { destroy(); }
 
-Powerup::Power Powerup::getType() {
-  return type_;
+Powerup::Power Powerup::getType() { return type_; }
+
+int Powerup::getColor() {
+  switch (type_) {
+    case kSpeed:
+      return kOrange;
+      break;
+    case kAmmo:
+      return kYellow;
+      break;
+    case kBulletSpeed:
+      return kPurple;
+      break;
+  }
 }
