@@ -156,10 +156,10 @@ void ofApp::draw() {
     ofFill();
     p2_tank_->draw();
 
-    ofSetHexColor(0x00FF00);
-    ofFill();
     for (auto powerup : powerups_) {
       if (powerup) {
+        ofSetHexColor(powerup->getColor());
+        ofFill();
         powerup->draw();
       }
     }
