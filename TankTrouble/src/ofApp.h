@@ -12,7 +12,7 @@ class ofApp : public ofBaseApp {
 
   // Constants
   const string kDefaultTankFilename = "data/tank.txt";
-  const string kStartupSoundFilename = "data/sounds/startup2.mp3";
+  const string kStartupSoundFilename = "data/sounds/startup.mp3";
   const string kMazeEdgesFilename = "data/mazes/maze";
   const string kMazePositionsFilename = "data/mazes/maze";
   const int kNumMazes = 4;
@@ -27,7 +27,7 @@ class ofApp : public ofBaseApp {
   const int kP2Left = OF_KEY_LEFT;
   const int kP2Shoot = '/'; // OF_KEY_PAGE_DOWN
   const int kFPS = 30;
-  const double kPowerupChance = 10; //Chance that new powerup spawns
+  const double kPowerupChance = 3; //Chance that new powerup spawns
   
 
 private:

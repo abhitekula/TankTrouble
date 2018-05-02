@@ -82,14 +82,14 @@ void ofApp::updateTanks() {
 
   if (is_key_pressed_[kP1Forward]) {
     double angle = (p1_tank_->body->GetAngle());
-    p1_tank_->body->SetLinearVelocity(
-        b2Vec2(sin(angle) * p1_linear_velocity, -cos(angle) * p1_linear_velocity));
+    p1_tank_->body->SetLinearVelocity(b2Vec2(sin(angle) * p1_linear_velocity,
+                                             -cos(angle) * p1_linear_velocity));
   }
 
   if (is_key_pressed_[kP1Backward]) {
     double angle = (p1_tank_->body->GetAngle());
-    p1_tank_->body->SetLinearVelocity(
-        b2Vec2(-sin(angle) * p1_linear_velocity, cos(angle) * p1_linear_velocity));
+    p1_tank_->body->SetLinearVelocity(b2Vec2(-sin(angle) * p1_linear_velocity,
+                                             cos(angle) * p1_linear_velocity));
   }
 
   if (is_key_pressed_[kP1Left]) {
@@ -102,14 +102,14 @@ void ofApp::updateTanks() {
 
   if (is_key_pressed_[kP2Forward]) {
     double angle = (p2_tank_->body->GetAngle());
-    p2_tank_->body->SetLinearVelocity(
-        b2Vec2(sin(angle) * p2_linear_velocity, -cos(angle) * p2_linear_velocity));
+    p2_tank_->body->SetLinearVelocity(b2Vec2(sin(angle) * p2_linear_velocity,
+                                             -cos(angle) * p2_linear_velocity));
   }
 
   if (is_key_pressed_[kP2Backward]) {
     double angle = (p2_tank_->body->GetAngle());
-    p2_tank_->body->SetLinearVelocity(
-        b2Vec2(-sin(angle) * p2_linear_velocity, cos(angle) * p2_linear_velocity));
+    p2_tank_->body->SetLinearVelocity(b2Vec2(-sin(angle) * p2_linear_velocity,
+                                             cos(angle) * p2_linear_velocity));
   }
 
   if (is_key_pressed_[kP2Left]) {
@@ -179,6 +179,12 @@ void ofApp::draw() {
       ofFill();
       powerup->draw();
     }
+
+    if (paused_) {
+      string pause_message = "Press 'P' to unpause:";
+      ofSetHexColor(000000);
+      ofDrawBitmapString(pause_message, ofGetWidth() / 2, ofGetHeight() / 2);
+    }
   } else {
     string end_message = "Press 'R' to start the next round:";
     ofSetHexColor(000000);
@@ -199,7 +205,7 @@ void ofApp::keyPressed(int key) {
   } else if (is_round_over_ && upper_key == 'R') {
     setupMaze();
     reset();
-  } else if (upper_key == 'P') {
+  } else if (!is_round_over_ && upper_key == 'P') {
     paused_ ? paused_ = false : paused_ = true;
   } else {
     is_key_pressed_[upper_key] = true;
@@ -252,7 +258,9 @@ void ofApp::mouseEntered(int x, int y) {}
 void ofApp::mouseExited(int x, int y) {}
 
 //--------------------------------------------------------------
-void ofApp::windowResized(int w, int h) { box2d_.createBounds(); }
+void ofApp::windowResized(int w, int h) {
+  // box2d_.createBounds();
+}
 
 //--------------------------------------------------------------
 void ofApp::gotMessage(ofMessage msg) {}
