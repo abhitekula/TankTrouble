@@ -180,9 +180,16 @@ void ofApp::draw() {
       powerup->draw();
     }
 
+    ofSetHexColor(000000);
+    string p1_status = "P1 Ammo: " + ofToString(p1_tank_->getAmmo()) +
+                       " Health: " + ofToString(p1_tank_->getHealth());
+    string p2_status = "P2 Ammo: " + ofToString(p2_tank_->getAmmo()) +
+                       " Health: " + ofToString(p2_tank_->getHealth());
+    ofDrawBitmapString(p1_status, 50, ofGetHeight() - 20);
+    ofDrawBitmapString(p2_status, ofGetWidth() - 200, ofGetHeight() - 20);
+
     if (paused_) {
       string pause_message = "Press 'P' to unpause:";
-      ofSetHexColor(000000);
       ofDrawBitmapString(pause_message, ofGetWidth() / 2, ofGetHeight() / 2);
     }
   } else {
