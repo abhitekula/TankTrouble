@@ -44,8 +44,8 @@ void ofApp::setupMaze() {
 }
 
 void ofApp::setupTanks() {
-  p1_tank_ = new Tank(1, kDefaultTankFilename, box2d_.getWorld());
-  p2_tank_ = new Tank(2, kDefaultTankFilename, box2d_.getWorld());
+  p1_tank_ = new Tank(kDefaultTankFilename, box2d_.getWorld());
+  p2_tank_ = new Tank(kDefaultTankFilename, box2d_.getWorld());
 
   p1_tank_->setPosition(maze_->getStartingPosition(true));
   p2_tank_->setPosition(maze_->getStartingPosition(false));

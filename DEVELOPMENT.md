@@ -17,6 +17,7 @@
 * Create the actual maze and place it on the screen.
 * Add audio and sound effects.
 * Add Pause Menu.
+* Added 4 Powerups (Increased speed, Plus 3 Ammo, Increased Bullet Speed, Max Health)
 
 ## Solved Issues
 * OpenFrameworks wrapper for Box2d does not behave the same as regular Box2d.
@@ -50,4 +51,3 @@
 ## ToDo
 
 * Resize tanks and elements of screen when windows is resized.
-* Powerups.

@@ -33,18 +33,21 @@ void CollisionDetector::BeginContact(b2Contact *contact) {
   }
 
   if (dynamic_cast<Powerup *>(bodyA)) {
-    cout << "Powerup Collision Detected" << endl;
-    bodyA->body->SetUserData(nullptr); //So we can remove the powerup after it has been used
+    powerup = dynamic_cast<Powerup *>(bodyA);
   }
 
   if (dynamic_cast<Powerup *>(bodyB)) {
-    cout << "Powerup Collision Detected" << endl;
-    bodyB->body->SetUserData(nullptr); //So we can remove the powerup after it has been used
+    powerup = dynamic_cast<Powerup *>(bodyB);
   }
 
   if (tank && bullet) {
     tank->hit();
     bullet->body->SetUserData(nullptr); //So we can remove the bullet after it hits a tank
+  }
+
+  if(tank && powerup) {
+    powerup->usePowerup(tank);
+    powerup->body->SetUserData(nullptr); //So we can remove the powerup after it has been used
   }
 }
 

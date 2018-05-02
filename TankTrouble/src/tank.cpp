@@ -1,11 +1,11 @@
 #include "tank.h"
 
-Tank::Tank(int id, string file, b2World *world) {
-  id_ = id;
+Tank::Tank(string file, b2World *world) {
   health_ = kStartingHealth;
   ammo_ = kStartingAmmo;
   linear_velocity_ = kStartingLinearVelocity;
   angular_velocity_ = kStartingAngularVelocity;
+  bullet_velocity_ = kStartingBulletVelocity;
 
   createTank(file, world);
   body->SetUserData(this);
@@ -59,15 +59,25 @@ vector<ofPoint> Tank::loadPoints(string file) {
 
 int Tank::getAmmo() { return ammo_; }
 
-int Tank::getId() { return id_; }
-
 double Tank::getHealth() { return health_; }
 
 double Tank::getLinearVelocity() { return linear_velocity_; }
 
 double Tank::getAngularVelocity() { return angular_velocity_; }
 
+double Tank::getBulletVelocity() { return bullet_velocity_; }
+
 vector<ofxBox2dCircle *> Tank::getBullets() { return bullets_; }
+
+void Tank::addAmmo(int amount) { ammo_ += amount; }
+
+void Tank::setHealth(double health) { health_ = health; }
+
+void Tank::setLinearVelocity(double velocity) { linear_velocity_ = velocity; }
+
+void Tank::setAngularVelocity(double velocity) { angular_velocity_ = velocity; }
+
+void Tank::setBulletVelocity(double velocity) { bullet_velocity_ = velocity; }
 
 bool Tank::isDead() { return health_ <= 0; }
 
@@ -82,8 +92,12 @@ void Tank::reset() {
   bullets_.clear();
   body->SetLinearVelocity(b2Vec2(0, 0));
   body->SetAngularVelocity(0);
+  
   health_ = kStartingHealth;
   ammo_ = kStartingAmmo;
+  linear_velocity_ = kStartingLinearVelocity;
+  angular_velocity_ = kStartingAngularVelocity;
+  bullet_velocity_ = kStartingBulletVelocity;
 }
 
 void Tank::shoot(b2World *world) {
@@ -107,8 +121,8 @@ void Tank::shoot(b2World *world) {
         this->getPosition().y + kBulletDistanceFromTank * -cos(tank_angle), 10);
     bullet->setRotation(this->getRotation());
     double angle = (bullet->body->GetAngle());
-    bullet->setVelocity(sin(angle) * kBulletVelocity,
-                        -cos(angle) * kBulletVelocity);
+    bullet->setVelocity(sin(angle) * bullet_velocity_,
+                        -cos(angle) * bullet_velocity_);
     bullet->body->SetUserData(bullet);
     bullets_.push_back(bullet);
   }
@@ -124,13 +138,13 @@ void Tank::draw() {
 
 void Tank::removeBullets() {
   vector<int> indexes_to_remove;
-  for(int i = 0; i < bullets_.size(); i++) {
-    if(!bullets_[i]->body->GetUserData()) {
+  for (int i = 0; i < bullets_.size(); i++) {
+    if (!bullets_[i]->body->GetUserData()) {
       indexes_to_remove.push_back(i);
     }
   }
 
-  for(auto i: indexes_to_remove) {
+  for (auto i : indexes_to_remove) {
     bullets_[i]->destroy();
     bullets_.erase(bullets_.begin() + i);
   }

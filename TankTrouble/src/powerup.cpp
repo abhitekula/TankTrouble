@@ -23,14 +23,36 @@ Powerup::Power Powerup::getType() { return type_; }
 
 int Powerup::getColor() {
   switch (type_) {
-    case kSpeed:
-      return kOrange;
-      break;
-    case kAmmo:
-      return kYellow;
-      break;
-    case kBulletSpeed:
-      return kPurple;
-      break;
+  case kSpeed:
+    return kOrange;
+    break;
+  case kAmmo:
+    return kYellow;
+    break;
+  case kBulletSpeed:
+    return kPurple;
+    break;
+  case kHealth:
+    return kGreen;
+    break;
+  }
+}
+
+void Powerup::usePowerup(Tank *tank) {
+  switch (type_) {
+  case kSpeed:
+    tank->setLinearVelocity(kNewLinearVelocity);
+    tank->setAngularVelocity(kNewAngularVelocity);
+    tank->setBulletVelocity(kNewBulletVelocity);
+    break;
+  case kAmmo:
+    tank->addAmmo(kAmmoToAdd);
+    break;
+  case kBulletSpeed:
+    tank->setBulletVelocity(kNewBulletVelocity);
+    break;
+  case kHealth:
+    tank->setHealth(kNewHealth);
+    break;
   }
 }

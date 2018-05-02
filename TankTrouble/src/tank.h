@@ -12,19 +12,18 @@ class Tank : public ofxBox2dPolygon {
   const double kStartingHealth = 1;
   const double kStartingLinearVelocity = 10;
   const double kStartingAngularVelocity = 3;
-  const double kRefillInterval = 10; // How often to refill ammo in seconds
   const double kBulletDamage = 0.5;  // How much damage each bullet does
-  const double kBulletVelocity = 10;
+  const double kStartingBulletVelocity = 11;
   const double kBulletDistanceFromTank = 130;
   const double kDamping = 1.5;
 
 private:
   typedef ofxBox2dPolygon super; //Allows for call to super.draw()
   int ammo_;
-  int id_;
   double health_;
   double linear_velocity_;
   double angular_velocity_;
+  double bullet_velocity_;
   vector<ofxBox2dCircle *> bullets_;
 
   void *createTank(string file, b2World *world);
@@ -34,7 +33,7 @@ private:
   void removeBullets(); //To remove the bullets that hit the tank
 
 public:
-  Tank(int id, string file, b2World *world); // Initalize from file
+  Tank(string file, b2World *world); // Initalize from file
 
   int getAmmo();
 
@@ -47,6 +46,18 @@ public:
   double getLinearVelocity();
 
   double getAngularVelocity();
+
+  double getBulletVelocity();
+
+  void addAmmo(int amount);
+
+  void setHealth(double health);
+
+  void setLinearVelocity(double velocity);
+
+  void setAngularVelocity(double velocity);
+
+  void setBulletVelocity(double velocity);
 
   bool isDead();
 
