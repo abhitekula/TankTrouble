@@ -58,6 +58,7 @@ void ofApp::update() {
     cout << "P1 is Dead" << endl;
     p2_score_++;
     is_round_over_ = true;
+    //Play tank dead sound
   } else if (p2_tank_->isDead() && !is_round_over_) {
     cout << "P2 is Dead" << endl;
     p1_score_++;

@@ -25,8 +25,11 @@ class Powerup : public ofxBox2dRect {
 
 private:
   Power type_;
+  ofSoundPlayer* sound_;
 
   void createPowerup(b2World *world);
+
+  void setupSound();
 
 public:
   Powerup(b2World *world);

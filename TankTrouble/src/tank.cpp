@@ -7,6 +7,7 @@ Tank::Tank(string file, b2World *world) {
   angular_velocity_ = kStartingAngularVelocity;
   bullet_velocity_ = kStartingBulletVelocity;
 
+  loadSounds();
   createTank(file, world);
   body->SetUserData(this);
 }
@@ -57,6 +58,18 @@ vector<ofPoint> Tank::loadPoints(string file) {
   return points;
 }
 
+void Tank::loadSounds() {
+  hit_sound_ = new ofSoundPlayer();
+  hit_sound_->setMultiPlay(true);
+  hit_sound_->load("data/sounds/tankHit.mp3");
+  destroyed_sound_ = new ofSoundPlayer();
+  destroyed_sound_->setMultiPlay(true);
+  destroyed_sound_->load("data/sounds/tankDead.mp3");
+  shoot_sound_ = new ofSoundPlayer();
+  shoot_sound_->setMultiPlay(true);
+  shoot_sound_->load("data/sounds/shoot.mp3");
+}
+
 int Tank::getAmmo() { return ammo_; }
 
 double Tank::getHealth() { return health_; }
@@ -81,7 +94,14 @@ void Tank::setBulletVelocity(double velocity) { bullet_velocity_ = velocity; }
 
 bool Tank::isDead() { return health_ <= 0; }
 
-void Tank::hit() { health_ -= kBulletDamage; }
+void Tank::hit() {
+  health_ -= kBulletDamage;
+  if (isDead()) {
+    destroyed_sound_->play();
+  } else {
+    hit_sound_->play();
+  }
+}
 
 void Tank::reset() {
   for (auto bullet : bullets_) {
@@ -92,7 +112,7 @@ void Tank::reset() {
   bullets_.clear();
   body->SetLinearVelocity(b2Vec2(0, 0));
   body->SetAngularVelocity(0);
-  
+
   health_ = kStartingHealth;
   ammo_ = kStartingAmmo;
   linear_velocity_ = kStartingLinearVelocity;
@@ -103,6 +123,7 @@ void Tank::reset() {
 void Tank::shoot(b2World *world) {
   if (ammo_ > 0) {
     ammo_--;
+    shoot_sound_->play();
     ofxBox2dCircle *bullet = new ofxBox2dCircle();
 
     b2BodyDef bullet_body_def;

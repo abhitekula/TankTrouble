@@ -25,10 +25,15 @@ private:
   double angular_velocity_;
   double bullet_velocity_;
   vector<ofxBox2dCircle *> bullets_;
+  ofSoundPlayer* hit_sound_;
+  ofSoundPlayer* destroyed_sound_;
+  ofSoundPlayer* shoot_sound_;
 
   void *createTank(string file, b2World *world);
 
   static vector<ofPoint> loadPoints(string file);
+
+  void loadSounds();
 
   void removeBullets(); //To remove the bullets that hit the tank
 

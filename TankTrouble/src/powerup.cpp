@@ -2,6 +2,7 @@
 
 Powerup::Powerup(b2World *world) {
   createPowerup(world);
+  setupSound();
   body->SetUserData(this); // For the collision detection
 }
 
@@ -17,7 +18,33 @@ void Powerup::createPowerup(b2World *world) {
   type_ = Power(rand() % numPowerupTypes);
 }
 
-Powerup::~Powerup() { destroy(); }
+void Powerup::setupSound() {
+  sound_ = new ofSoundPlayer();
+  sound_->setMultiPlay(true);
+  string filename;
+
+  switch (type_) {
+  case kSpeed:
+    filename = "data/sounds/speed.mp3";
+    break;
+  case kAmmo:
+    filename = "data/sounds/ammo.mp3";
+    break;
+  case kBulletSpeed:
+    filename = "data/sounds/bullet.mp3";
+    break;
+  case kHealth:
+    filename = "data/sounds/health.mp3";
+    break;
+  }
+
+  sound_->load(filename);
+}
+
+Powerup::~Powerup() {
+  destroy();
+  delete sound_;
+}
 
 Powerup::Power Powerup::getType() { return type_; }
 
@@ -39,6 +66,7 @@ int Powerup::getColor() {
 }
 
 void Powerup::usePowerup(Tank *tank) {
+  sound_->play();
   switch (type_) {
   case kSpeed:
     tank->setLinearVelocity(kNewLinearVelocity);
