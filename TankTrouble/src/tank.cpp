@@ -4,6 +4,8 @@ Tank::Tank(int id, string file, b2World *world) {
   id_ = id;
   health_ = kStartingHealth;
   ammo_ = kStartingAmmo;
+  linear_velocity_ = kStartingLinearVelocity;
+  angular_velocity_ = kStartingAngularVelocity;
 
   createTank(file, world);
   body->SetUserData(this);
@@ -60,6 +62,10 @@ int Tank::getAmmo() { return ammo_; }
 int Tank::getId() { return id_; }
 
 double Tank::getHealth() { return health_; }
+
+double Tank::getLinearVelocity() { return linear_velocity_; }
+
+double Tank::getAngularVelocity() { return angular_velocity_; }
 
 vector<ofxBox2dCircle *> Tank::getBullets() { return bullets_; }
 

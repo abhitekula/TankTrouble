@@ -16,8 +16,6 @@ class ofApp : public ofBaseApp {
   const string kMazeEdgesFilename = "data/mazes/maze";
   const string kMazePositionsFilename = "data/mazes/maze";
   const int kNumMazes = 4;
-  const double kLinearVelocity = 10;
-  const double kAngularVelocity = 3;
   const int kP1Forward = 'W';
   const int kP1Backward = 'S';
   const int kP1Right = 'D';

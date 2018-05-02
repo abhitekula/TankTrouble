@@ -10,6 +10,8 @@ class Tank : public ofxBox2dPolygon {
   const string kBulletFilename = "data/bullet.txt";
   const int kStartingAmmo = 5;
   const double kStartingHealth = 1;
+  const double kStartingLinearVelocity = 10;
+  const double kStartingAngularVelocity = 3;
   const double kRefillInterval = 10; // How often to refill ammo in seconds
   const double kBulletDamage = 0.5;  // How much damage each bullet does
   const double kBulletVelocity = 10;
@@ -21,6 +23,8 @@ private:
   int ammo_;
   int id_;
   double health_;
+  double linear_velocity_;
+  double angular_velocity_;
   vector<ofxBox2dCircle *> bullets_;
 
   void *createTank(string file, b2World *world);
@@ -39,6 +43,10 @@ public:
   double getHealth();
 
   vector<ofxBox2dCircle *> getBullets();
+
+  double getLinearVelocity();
+
+  double getAngularVelocity();
 
   bool isDead();
 

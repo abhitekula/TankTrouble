@@ -74,44 +74,49 @@ void ofApp::update() {
 }
 
 void ofApp::updateTanks() {
+  double p1_linear_velocity = p1_tank_->getLinearVelocity();
+  double p2_linear_velocity = p2_tank_->getLinearVelocity();
+  double p1_angular_velocity = p1_tank_->getAngularVelocity();
+  double p2_angular_velocity = p2_tank_->getAngularVelocity();
+
   if (is_key_pressed_[kP1Forward]) {
     double angle = (p1_tank_->body->GetAngle());
     p1_tank_->body->SetLinearVelocity(
-        b2Vec2(sin(angle) * kLinearVelocity, -cos(angle) * kLinearVelocity));
+        b2Vec2(sin(angle) * p1_linear_velocity, -cos(angle) * p1_linear_velocity));
   }
 
   if (is_key_pressed_[kP1Backward]) {
     double angle = (p1_tank_->body->GetAngle());
     p1_tank_->body->SetLinearVelocity(
-        b2Vec2(-sin(angle) * kLinearVelocity, cos(angle) * kLinearVelocity));
+        b2Vec2(-sin(angle) * p1_linear_velocity, cos(angle) * p1_linear_velocity));
   }
 
   if (is_key_pressed_[kP1Left]) {
-    p1_tank_->body->SetAngularVelocity(-kAngularVelocity);
+    p1_tank_->body->SetAngularVelocity(-p1_angular_velocity);
   }
 
   if (is_key_pressed_[kP1Right]) {
-    p1_tank_->body->SetAngularVelocity(kAngularVelocity);
+    p1_tank_->body->SetAngularVelocity(p1_angular_velocity);
   }
 
   if (is_key_pressed_[kP2Forward]) {
     double angle = (p2_tank_->body->GetAngle());
     p2_tank_->body->SetLinearVelocity(
-        b2Vec2(sin(angle) * kLinearVelocity, -cos(angle) * kLinearVelocity));
+        b2Vec2(sin(angle) * p2_linear_velocity, -cos(angle) * p2_linear_velocity));
   }
 
   if (is_key_pressed_[kP2Backward]) {
     double angle = (p2_tank_->body->GetAngle());
     p2_tank_->body->SetLinearVelocity(
-        b2Vec2(-sin(angle) * kLinearVelocity, cos(angle) * kLinearVelocity));
+        b2Vec2(-sin(angle) * p2_linear_velocity, cos(angle) * p2_linear_velocity));
   }
 
   if (is_key_pressed_[kP2Left]) {
-    p2_tank_->body->SetAngularVelocity(-kAngularVelocity);
+    p2_tank_->body->SetAngularVelocity(-p2_angular_velocity);
   }
 
   if (is_key_pressed_[kP2Right]) {
-    p2_tank_->body->SetAngularVelocity(kAngularVelocity);
+    p2_tank_->body->SetAngularVelocity(p2_angular_velocity);
   }
 }
 
@@ -176,48 +181,20 @@ void ofApp::draw() {
 void ofApp::keyPressed(int key) {
   int upper_key = toupper(key); // Standardize on upper case
 
-  if (upper_key == kP1Forward) {
-    double angle = (p1_tank_->body->GetAngle());
-    p1_tank_->body->SetLinearVelocity(
-        b2Vec2(sin(angle) * kLinearVelocity, -cos(angle) * kLinearVelocity));
-  } else if (upper_key == kP1Backward) {
-    double angle = (p1_tank_->body->GetAngle());
-    p1_tank_->body->SetLinearVelocity(
-        b2Vec2(-sin(angle) * kLinearVelocity, cos(angle) * kLinearVelocity));
-  } else if (upper_key == kP1Left) {
-    p1_tank_->body->SetAngularVelocity(-kAngularVelocity);
-  } else if (upper_key == kP1Right) {
-    p1_tank_->body->SetAngularVelocity(kAngularVelocity);
-  } else if (upper_key == kP2Forward) {
-    double angle = (p2_tank_->body->GetAngle());
-    p2_tank_->body->SetLinearVelocity(
-        b2Vec2(sin(angle) * kLinearVelocity, -cos(angle) * kLinearVelocity));
-  } else if (upper_key == kP2Backward) {
-    double angle = (p2_tank_->body->GetAngle());
-    p2_tank_->body->SetLinearVelocity(
-        b2Vec2(-sin(angle) * kLinearVelocity, cos(angle) * kLinearVelocity));
-  } else if (upper_key == kP2Left) {
-    p2_tank_->body->SetAngularVelocity(-kAngularVelocity);
-  } else if (upper_key == kP2Right) {
-    p2_tank_->body->SetAngularVelocity(kAngularVelocity);
-  } else if (upper_key == kP1Shoot && !paused_) {
+  if (upper_key == kP1Shoot && !paused_) {
     p1_tank_->shoot(box2d_.getWorld());
-    return;
   } else if (upper_key == kP2Shoot && !paused_) {
     p2_tank_->shoot(box2d_.getWorld());
-    return;
   } else if (is_round_over_ && upper_key == 'R') {
     setupMaze();
     reset();
-    return;
   } else if (upper_key == 'P') {
     paused_ ? paused_ = false : paused_ = true;
-    return;
   } else {
-    return;
+    is_key_pressed_[upper_key] = true;
   }
 
-  is_key_pressed_[upper_key] = true;
+  update();
 }
 
 //--------------------------------------------------------------
