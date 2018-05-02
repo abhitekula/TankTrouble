@@ -204,8 +204,6 @@ void ofApp::keyPressed(int key) {
   } else {
     is_key_pressed_[upper_key] = true;
   }
-
-  update();
 }
 
 //--------------------------------------------------------------
