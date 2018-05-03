@@ -54,7 +54,7 @@ public:
 
   double getBulletVelocity();
 
-  void addAmmo(int amount);
+  void setAmmo(int amount);
 
   void setHealth(double health);
 

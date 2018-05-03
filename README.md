@@ -1,5 +1,7 @@
 # CS 126 Final Project Tank Trouble
 
+![Image of TankTrouble](TankTrouble/bin/data/tanktrouble.png)
+
 ## Description
 
 Tank Trouble is a two player game where each person controls a tank. The goal is to kill the other person by navigating through the maze and shooting at them. Be careful to not shoot randomly because you can get hit by your own bullet. Along the way be sure to pick up powerups for an edge over your opponents. The only way to get more ammo after running out is through powerups. Game On!!!
@@ -51,3 +53,9 @@ https://github.com/vanderlin/ofxBox2d/tree/stable
 * Orange - Increased tank speed and bullet speed.
 * Green - Max Health.
 * Purple - Increased bullet speed.
+
+## Credits
+
+* Some of the sounds effects were from www.flashkit.com/soundfx/
+* http://www.flashkit.com/imagesvr_ce/flashkit/soundfx/Electronic/Arcade/PulseSho-Mark_E_B-8071/PulseSho-Mark_E_B-8071_hifi.mp3
+* http://www.flashkit.com/imagesvr_ce/flashkit/soundfx/Electronic/Arcade/PowerUp-Mark_E_B-8070/PowerUp-Mark_E_B-8070_hifi.mp3

@@ -82,7 +82,7 @@ double Tank::getBulletVelocity() { return bullet_velocity_; }
 
 vector<ofxBox2dCircle *> Tank::getBullets() { return bullets_; }
 
-void Tank::addAmmo(int amount) { ammo_ += amount; }
+void Tank::setAmmo(int amount) { ammo_ = amount; }
 
 void Tank::setHealth(double health) { health_ = health; }
 

@@ -74,7 +74,7 @@ void Powerup::usePowerup(Tank *tank) {
     tank->setBulletVelocity(kNewBulletVelocity);
     break;
   case kAmmo:
-    tank->addAmmo(kAmmoToAdd);
+    tank->setAmmo(kAmmoRefill);
     break;
   case kBulletSpeed:
     tank->setBulletVelocity(kNewBulletVelocity);

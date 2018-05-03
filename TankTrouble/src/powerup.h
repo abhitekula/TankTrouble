@@ -17,7 +17,7 @@ class Powerup : public ofxBox2dRect {
   };
   const int numPowerupTypes = 4;
   const double kDamping = 5;
-  const int kAmmoToAdd = 3;
+  const int kAmmoRefill = 5;
   const double kNewLinearVelocity = 15;
   const double kNewAngularVelocity = 5;
   const double kNewBulletVelocity = 20;

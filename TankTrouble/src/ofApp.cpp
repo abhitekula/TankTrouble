@@ -206,9 +206,9 @@ void ofApp::draw() {
 void ofApp::keyPressed(int key) {
   int upper_key = toupper(key); // Standardize on upper case
 
-  if (upper_key == kP1Shoot && !paused_) {
+  if (upper_key == kP1Shoot && !is_round_over_ && !paused_) {
     p1_tank_->shoot(box2d_.getWorld());
-  } else if (upper_key == kP2Shoot && !paused_) {
+  } else if (upper_key == kP2Shoot && !is_round_over_ && !paused_) {
     p2_tank_->shoot(box2d_.getWorld());
   } else if (is_round_over_ && upper_key == 'R') {
     setupMaze();
