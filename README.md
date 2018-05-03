@@ -27,6 +27,10 @@ https://github.com/vanderlin/ofxBox2d/tree/stable
 
 2. Navigate to the TankTrouble/bin/ folder and run the TankTrouble executable.
 
+## How to run tests
+
+1. Go to Test directory and run tests in tank_trouble_test.cpp file
+
 ## Instructions
 
 #### How to move around:

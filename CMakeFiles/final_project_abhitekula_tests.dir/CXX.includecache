@@ -6,6 +6,12 @@
 
 #IncludeRegexTransform: 
 
+/home/abhi/CLionProjects/final-project-abhitekula/TankTrouble/src/tank.h
+ofxBox2d.h
+/home/abhi/CLionProjects/final-project-abhitekula/TankTrouble/src/ofxBox2d.h
+math.h
+-
+
 /home/abhi/CLionProjects/final-project-abhitekula/Test/catch.h
 TargetConditionals.h
 -
@@ -399,4 +405,6 @@ iostream
 -
 catch.h
 /home/abhi/CLionProjects/final-project-abhitekula/Test/catch.h
+../TankTrouble/src/tank.h
+/home/abhi/CLionProjects/final-project-abhitekula/TankTrouble/src/tank.h
 
