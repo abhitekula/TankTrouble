@@ -3,7 +3,7 @@
 //--------------------------------------------------------------
 void ofApp::setup() {
   ofSetFrameRate(kFPS);
-  ofBackgroundHex(0xfdefc2);
+  ofBackgroundHex(kBackgroundColor);
   ofSetLogLevel(OF_LOG_NOTICE);
   ofSetVerticalSync(true);
   is_round_over_ = false;
@@ -38,8 +38,9 @@ void ofApp::setupMaze() {
 
   int index = rand() % kNumMazes + 1;
   maze_ = new Maze(
-      (kMazeEdgesFilename + to_string(index) + "Edges.txt"),
-      (kMazePositionsFilename + to_string(index) + "StartingPositions.txt"),
+      (kMazeEdgesFilename + to_string(index) + kMazeEdgesFilenameSuffix),
+      (kMazePositionsFilename + to_string(index) +
+       kMazePositionsFilenameSuffix),
       box2d_.getWorld());
 }
 
@@ -58,7 +59,7 @@ void ofApp::update() {
     cout << "P1 is Dead" << endl;
     p2_score_++;
     is_round_over_ = true;
-    //Play tank dead sound
+    // Play tank dead sound
   } else if (p2_tank_->isDead() && !is_round_over_) {
     cout << "P2 is Dead" << endl;
     p1_score_++;
@@ -160,18 +161,18 @@ void ofApp::draw() {
   string score = "Score: Player 1 - " + ofToString(p1_score_) + " Player 2 - " +
                  ofToString(p2_score_);
   string fps = "FPS: " + ofToString(ofGetFrameRate());
-  ofSetHexColor(000000);
-  ofDrawBitmapString(score, 0, 20);
-  ofDrawBitmapString(fps, ofGetWidth() - 100, 20);
+  ofSetHexColor(kBlack);
+  ofDrawBitmapString(score, kScoreXPosition, kScoreYPosition);
+  ofDrawBitmapString(fps, ofGetWidth() - kFpsXPosition, kFpsYPosition);
 
   if (!is_round_over_) {
     maze_->draw();
 
-    ofSetHexColor(0xFF0000);
+    ofSetHexColor(kRed);
     ofFill();
     p1_tank_->draw();
 
-    ofSetHexColor(0x0000FF);
+    ofSetHexColor(kBlue);
     ofFill();
     p2_tank_->draw();
 
@@ -181,21 +182,25 @@ void ofApp::draw() {
       powerup->draw();
     }
 
-    ofSetHexColor(000000);
+    ofSetHexColor(kBlack);
     string p1_status = "P1 Ammo: " + ofToString(p1_tank_->getAmmo()) +
                        " Health: " + ofToString(p1_tank_->getHealth());
     string p2_status = "P2 Ammo: " + ofToString(p2_tank_->getAmmo()) +
                        " Health: " + ofToString(p2_tank_->getHealth());
-    ofDrawBitmapString(p1_status, 50, ofGetHeight() - 20);
-    ofDrawBitmapString(p2_status, ofGetWidth() - 200, ofGetHeight() - 20);
+    ofDrawBitmapString(p1_status, kP1StatusXPosition,
+                       ofGetHeight() - kP1StatusYPosition);
+    ofDrawBitmapString(p2_status, ofGetWidth() - kP2StatusXPosition,
+                       ofGetHeight() - kP2StatusYPosition);
 
     if (paused_) {
-      string pause_message = "Press 'P' to unpause:";
+      string pause_message =
+          "Press " + ofToString((char)kPause) + " to unpause:";
       ofDrawBitmapString(pause_message, ofGetWidth() / 2, ofGetHeight() / 2);
     }
   } else {
-    string end_message = "Press 'R' to start the next round:";
-    ofSetHexColor(000000);
+    string end_message =
+        "Press " + ofToString((char)kReset) + " to start the next round:";
+    ofSetHexColor(kBlack);
     ofDrawBitmapString(end_message, ofGetWidth() / 2, ofGetHeight() / 2);
     reset();
     is_round_over_ = true;
@@ -210,11 +215,15 @@ void ofApp::keyPressed(int key) {
     p1_tank_->shoot(box2d_.getWorld());
   } else if (upper_key == kP2Shoot && !is_round_over_ && !paused_) {
     p2_tank_->shoot(box2d_.getWorld());
-  } else if (is_round_over_ && upper_key == 'R') {
+  } else if (is_round_over_ && upper_key == kReset) {
     setupMaze();
     reset();
-  } else if (!is_round_over_ && upper_key == 'P') {
-    paused_ ? paused_ = false : paused_ = true;
+  } else if (!is_round_over_ && upper_key == kPause) {
+    if (paused_) {
+      paused_ = false;
+    } else {
+      paused_ = true;
+    }
   } else {
     is_key_pressed_[upper_key] = true;
   }
@@ -266,9 +275,7 @@ void ofApp::mouseEntered(int x, int y) {}
 void ofApp::mouseExited(int x, int y) {}
 
 //--------------------------------------------------------------
-void ofApp::windowResized(int w, int h) {
-  // box2d_.createBounds();
-}
+void ofApp::windowResized(int w, int h) {}
 
 //--------------------------------------------------------------
 void ofApp::gotMessage(ofMessage msg) {}

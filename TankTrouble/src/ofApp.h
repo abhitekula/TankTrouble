@@ -1,6 +1,6 @@
 #pragma once
 
-#include "collisionDetector.h"
+#include "collision_detector.h"
 #include "maze.h"
 #include "ofMain.h"
 #include "ofxBox2d.h"
@@ -11,11 +11,31 @@
 class ofApp : public ofBaseApp {
 
   // Constants
+  const int kFPS = 30;
+  const double kPowerupChance = 3; //Chance that new powerup spawns
+  
+  const int kBackgroundColor = 0xfdefc2;
+  const int kBlack = 0x000000;
+  const int kRed = 0xFF0000;
+  const int kBlue = 0x0000FF;
+
+  const int kScoreXPosition = 0;
+  const int kScoreYPosition = 20;
+  const int kFpsXPosition = 100; //From right of screen
+  const int kFpsYPosition = 20;
+  const int kP1StatusXPosition = 50;
+  const int kP1StatusYPosition = 20; //From bottom of screen
+  const int kP2StatusXPosition = 200; //From right of screen
+  const int kP2StatusYPosition = 20; //From bottom of screen
+
   const string kDefaultTankFilename = "data/tank.txt";
   const string kStartupSoundFilename = "data/sounds/startup.mp3";
   const string kMazeEdgesFilename = "data/mazes/maze";
   const string kMazePositionsFilename = "data/mazes/maze";
+  const string kMazeEdgesFilenameSuffix = "Edges.txt";
+  const string kMazePositionsFilenameSuffix = "StartingPositions.txt";
   const int kNumMazes = 4;
+
   const int kP1Forward = 'W';
   const int kP1Backward = 'S';
   const int kP1Right = 'D';
@@ -26,9 +46,8 @@ class ofApp : public ofBaseApp {
   const int kP2Right = OF_KEY_RIGHT;
   const int kP2Left = OF_KEY_LEFT;
   const int kP2Shoot = '/'; // OF_KEY_PAGE_DOWN
-  const int kFPS = 30;
-  const double kPowerupChance = 3; //Chance that new powerup spawns
-  
+  const int kReset = 'R';
+  const int kPause = 'P';
 
 private:
   bool is_key_pressed_[255];

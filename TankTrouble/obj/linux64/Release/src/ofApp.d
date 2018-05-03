@@ -1,7 +1,7 @@
 obj/linux64/Release/src/ofApp.o: \
  /home/abhi/CLionProjects/final-project-abhitekula/TankTrouble/src/ofApp.cpp \
  /home/abhi/CLionProjects/final-project-abhitekula/TankTrouble/src/ofApp.h \
- /home/abhi/CLionProjects/final-project-abhitekula/TankTrouble/src/collisionDetector.h \
+ /home/abhi/CLionProjects/final-project-abhitekula/TankTrouble/src/collision_detector.h \
  /home/abhi/Downloads/of_v0.9.8_linux64_release/libs/openFrameworks/ofMain.h \
  /home/abhi/Downloads/of_v0.9.8_linux64_release/libs/openFrameworks/utils/ofConstants.h \
  /home/abhi/Downloads/of_v0.9.8_linux64_release/libs/tess2/include/tesselator.h \
@@ -406,7 +406,7 @@ obj/linux64/Release/src/ofApp.o: \
 
 /home/abhi/CLionProjects/final-project-abhitekula/TankTrouble/src/ofApp.h:
 
-/home/abhi/CLionProjects/final-project-abhitekula/TankTrouble/src/collisionDetector.h:
+/home/abhi/CLionProjects/final-project-abhitekula/TankTrouble/src/collision_detector.h:
 
 /home/abhi/Downloads/of_v0.9.8_linux64_release/libs/openFrameworks/ofMain.h:
 

@@ -12,7 +12,7 @@ private:
   vector<ofVec2f> p1_starting_positions_;
   vector<ofVec2f> p2_starting_positions_;
 
-  void createMaze(string file, b2World* world);
+  void createMaze(string file, b2World *world);
 
   static vector<ofVec2f> loadMazes(string file);
 

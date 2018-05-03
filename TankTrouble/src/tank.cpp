@@ -22,7 +22,7 @@ void *Tank::createTank(string file, b2World *world) {
 
   b2FixtureDef tank_fixture;
   tank_fixture.shape = &rectangle;
-  tank_fixture.density = 1;
+  tank_fixture.density = kTankDensity;
 
   tank_body->CreateFixture(&tank_fixture);
 
@@ -30,7 +30,7 @@ void *Tank::createTank(string file, b2World *world) {
   addVertices(tank_pts);
   triangulatePoly();
   body = tank_body;
-  setPhysics(0.7, 0.5, 0.5);
+  setPhysics(kTankDensity, kTankBounce, kTankFriction);
   body->SetBullet(true);
   body->SetType(b2_dynamicBody);
   create(world);
@@ -61,13 +61,15 @@ vector<ofPoint> Tank::loadPoints(string file) {
 void Tank::loadSounds() {
   hit_sound_ = new ofSoundPlayer();
   hit_sound_->setMultiPlay(true);
-  hit_sound_->load("data/sounds/tankHit.mp3");
+  hit_sound_->load(kTankHitSoundFilename);
+
   destroyed_sound_ = new ofSoundPlayer();
   destroyed_sound_->setMultiPlay(true);
-  destroyed_sound_->load("data/sounds/tankDead.mp3");
+  destroyed_sound_->load(kTankDeadSoundFilename);
+
   shoot_sound_ = new ofSoundPlayer();
   shoot_sound_->setMultiPlay(true);
-  shoot_sound_->load("data/sounds/shoot.mp3");
+  shoot_sound_->load(kShootSoundFilename);
 }
 
 int Tank::getAmmo() { return ammo_; }
@@ -129,7 +131,7 @@ void Tank::shoot(b2World *world) {
     b2BodyDef bullet_body_def;
     bullet_body_def.type = b2_dynamicBody;
     b2Body *bullet_body = world->CreateBody(&bullet_body_def);
-    bullet->setPhysics(1, 1, 0); // Density, Bounce, Friction
+    bullet->setPhysics(kBulletDensity, kBulletBounce, kBulletFriction);
     bullet->setDamping(0);
     bullet->body = bullet_body;
     bullet->body->SetType(b2_dynamicBody);
@@ -139,7 +141,8 @@ void Tank::shoot(b2World *world) {
     bullet->setup(
         world,
         this->getPosition().x + kBulletDistanceFromTank * sin(tank_angle),
-        this->getPosition().y + kBulletDistanceFromTank * -cos(tank_angle), 10);
+        this->getPosition().y + kBulletDistanceFromTank * -cos(tank_angle),
+        kBulletSize);
     bullet->setRotation(this->getRotation());
     double angle = (bullet->body->GetAngle());
     bullet->setVelocity(sin(angle) * bullet_velocity_,

@@ -7,10 +7,10 @@ Powerup::Powerup(b2World *world) {
 }
 
 void Powerup::createPowerup(b2World *world) {
-  int x = rand() % 1800 + 60;
-  int y = rand() % 900 + 90;
+  int x = rand() % kPowerupSpanXCoordinates + kPowerupStartingXCoordinate;
+  int y = rand() % kPowerupSpanYCoordinates + kPowerupStartingYCoordinate;
   setup(world, x, y, kRectSize, kRectSize);
-  setPhysics(5, 0.5, 0.5);
+  setPhysics(kDensity, kBounce, kFriction); // Density, Bounce, Friction
   body->SetType(b2_dynamicBody);
   body->SetLinearDamping(kDamping);
   body->SetAngularDamping(kDamping);
@@ -25,16 +25,16 @@ void Powerup::setupSound() {
 
   switch (type_) {
   case kSpeed:
-    filename = "data/sounds/speed.mp3";
+    filename = kSpeedFilename;
     break;
   case kAmmo:
-    filename = "data/sounds/ammo.mp3";
+    filename = kAmmoFilename;
     break;
   case kBulletSpeed:
-    filename = "data/sounds/bullet.mp3";
+    filename = kBulletSpeedFilename;
     break;
   case kHealth:
-    filename = "data/sounds/health.mp3";
+    filename = kHealthFilename;
     break;
   }
 
