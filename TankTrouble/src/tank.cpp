@@ -1,75 +1,75 @@
 #include "tank.h"
 
 Tank::Tank(string file, b2World *world) {
-  health_ = kStartingHealth;
-  ammo_ = kStartingAmmo;
-  linear_velocity_ = kStartingLinearVelocity;
-  angular_velocity_ = kStartingAngularVelocity;
-  bullet_velocity_ = kStartingBulletVelocity;
+    health_ = kStartingHealth;
+    ammo_ = kStartingAmmo;
+    linear_velocity_ = kStartingLinearVelocity;
+    angular_velocity_ = kStartingAngularVelocity;
+    bullet_velocity_ = kStartingBulletVelocity;
 
-  loadSounds();
-  createTank(file, world);
-  body->SetUserData(this);
+    loadSounds();
+    createTank(file, world);
+    body->SetUserData(this);
 }
 
 void *Tank::createTank(string file, b2World *world) {
-  b2BodyDef tank_body_def;
-  tank_body_def.type = b2_dynamicBody;
-  b2Body *tank_body = world->CreateBody(&tank_body_def);
+    b2BodyDef tank_body_def;
+    tank_body_def.type = b2_dynamicBody;
+    b2Body *tank_body = world->CreateBody(&tank_body_def);
 
-  b2PolygonShape rectangle;
-  rectangle.SetAsBox(0, 0, b2Vec2(0, 0), 0);
+    b2PolygonShape rectangle;
+    rectangle.SetAsBox(0, 0, b2Vec2(0, 0), 0);
 
-  b2FixtureDef tank_fixture;
-  tank_fixture.shape = &rectangle;
-  tank_fixture.density = kTankDensity;
+    b2FixtureDef tank_fixture;
+    tank_fixture.shape = &rectangle;
+    tank_fixture.density = kTankDensity;
 
-  tank_body->CreateFixture(&tank_fixture);
+    tank_body->CreateFixture(&tank_fixture);
 
-  vector<ofPoint> tank_pts = loadPoints(file);
-  addVertices(tank_pts);
-  triangulatePoly();
-  body = tank_body;
-  setPhysics(kTankDensity, kTankBounce, kTankFriction);
-  body->SetBullet(true);
-  body->SetType(b2_dynamicBody);
-  create(world);
-  body->SetLinearDamping(kDamping);
-  body->SetAngularDamping(kDamping);
+    vector <ofPoint> tank_pts = loadPoints(file);
+    addVertices(tank_pts);
+    triangulatePoly();
+    body = tank_body;
+    setPhysics(kTankDensity, kTankBounce, kTankFriction);
+    body->SetBullet(true);
+    body->SetType(b2_dynamicBody);
+    create(world);
+    body->SetLinearDamping(kDamping);
+    body->SetAngularDamping(kDamping);
 }
 
-vector<ofPoint> Tank::loadPoints(string file) {
-  vector<ofPoint> points;
-  float x;
-  float y;
+vector <ofPoint> Tank::loadPoints(string file) {
+    vector <ofPoint> points;
+    float x;
+    float y;
 
-  ifstream inputFile;
-  inputFile.open(file);
+    ifstream inputFile;
+    inputFile.open(file);
 
-  if (inputFile.is_open()) {
-    while (!inputFile.eof()) {
-      inputFile >> x;
-      inputFile >> y;
-      points.push_back(ofPoint(x, y));
+    if (inputFile.is_open()) {
+        while (!inputFile.eof()) {
+            inputFile >> x;
+            inputFile >> y;
+            points.push_back(ofPoint(x, y));
+        }
     }
-  }
 
-  inputFile.close();
-  return points;
+    inputFile.close();
+    return points;
 }
 
 void Tank::loadSounds() {
-  hit_sound_ = new ofSoundPlayer();
-  hit_sound_->setMultiPlay(true);
-  hit_sound_->load(kTankHitSoundFilename);
+    hit_sound_ = new ofSoundPlayer();
+    hit_sound_->setMultiPlay(true);
+    hit_sound_->load(kTankHitSoundFilename);
 
-  destroyed_sound_ = new ofSoundPlayer();
-  destroyed_sound_->setMultiPlay(true);
-  destroyed_sound_->load(kTankDeadSoundFilename);
+    destroyed_sound_ = new ofSoundPlayer();
+    destroyed_sound_->setMultiPlay(true);
+    destroyed_sound_->load(kTankDeadSoundFilename);
 
-  shoot_sound_ = new ofSoundPlayer();
-  shoot_sound_->setMultiPlay(true);
-  shoot_sound_->load(kShootSoundFilename);
+    shoot_sound_ = new ofSoundPlayer();
+    shoot_sound_->setMultiPlay(true);
+    shoot_sound_->load(kShootSoundFilename);
 }
 
 int Tank::getAmmo() { return ammo_; }
@@ -97,79 +97,81 @@ void Tank::setBulletVelocity(double velocity) { bullet_velocity_ = velocity; }
 bool Tank::isDead() { return health_ <= 0; }
 
 void Tank::hit() {
-  health_ -= kBulletDamage;
-  if (isDead()) {
-    destroyed_sound_->play();
-  } else {
-    hit_sound_->play();
-  }
+    health_ -= kBulletDamage;
+    if (isDead()) {
+        destroyed_sound_->play();
+    } else {
+        hit_sound_->play();
+    }
 }
 
 void Tank::reset() {
-  for (auto bullet : bullets_) {
-    if (bullet) {
-      bullet->destroy();
+    for (auto bullet : bullets_) {
+        if (bullet) {
+            bullet->destroy();
+        }
     }
-  }
-  bullets_.clear();
-  body->SetLinearVelocity(b2Vec2(0, 0));
-  body->SetAngularVelocity(0);
+    bullets_.clear();
+    body->SetLinearVelocity(b2Vec2(0, 0));
+    body->SetAngularVelocity(0);
 
-  health_ = kStartingHealth;
-  ammo_ = kStartingAmmo;
-  linear_velocity_ = kStartingLinearVelocity;
-  angular_velocity_ = kStartingAngularVelocity;
-  bullet_velocity_ = kStartingBulletVelocity;
+    health_ = kStartingHealth;
+    ammo_ = kStartingAmmo;
+    linear_velocity_ = kStartingLinearVelocity;
+    angular_velocity_ = kStartingAngularVelocity;
+    bullet_velocity_ = kStartingBulletVelocity;
 }
 
 void Tank::shoot(b2World *world) {
-  if (ammo_ > 0) {
-    ammo_--;
-    shoot_sound_->play();
-    ofxBox2dCircle *bullet = new ofxBox2dCircle();
+    if (ammo_ > 0) {
+        ammo_--;
+        shoot_sound_->play();
+        ofxBox2dCircle *bullet = new ofxBox2dCircle();
 
-    b2BodyDef bullet_body_def;
-    bullet_body_def.type = b2_dynamicBody;
-    b2Body *bullet_body = world->CreateBody(&bullet_body_def);
-    bullet->setPhysics(kBulletDensity, kBulletBounce, kBulletFriction);
-    bullet->setDamping(0);
-    bullet->body = bullet_body;
-    bullet->body->SetType(b2_dynamicBody);
-    bullet->body->SetBullet(true);
+        b2BodyDef bullet_body_def;
+        bullet_body_def.type = b2_dynamicBody;
+        b2Body *bullet_body = world->CreateBody(&bullet_body_def);
+        bullet->setPhysics(kBulletDensity, kBulletBounce, kBulletFriction);
+        bullet->setDamping(0);
+        bullet->body = bullet_body;
+        bullet->body->SetType(b2_dynamicBody);
+        bullet->body->SetBullet(true);
 
-    double tank_angle = this->body->GetAngle();
-    bullet->setup(
-        world,
-        this->getPosition().x + kBulletDistanceFromTank * sin(tank_angle),
-        this->getPosition().y + kBulletDistanceFromTank * -cos(tank_angle),
-        kBulletSize);
-    bullet->setRotation(this->getRotation());
-    double angle = (bullet->body->GetAngle());
-    bullet->setVelocity(sin(angle) * bullet_velocity_,
-                        -cos(angle) * bullet_velocity_);
-    bullet->body->SetUserData(bullet);
-    bullets_.push_back(bullet);
-  }
+        double tank_angle = this->body->GetAngle();
+        bullet->setup(
+                world,
+                this->getPosition().x +
+                kBulletDistanceFromTank * sin(tank_angle),
+                this->getPosition().y +
+                kBulletDistanceFromTank * -cos(tank_angle),
+                kBulletSize);
+        bullet->setRotation(this->getRotation());
+        double angle = (bullet->body->GetAngle());
+        bullet->setVelocity(sin(angle) * bullet_velocity_,
+                            -cos(angle) * bullet_velocity_);
+        bullet->body->SetUserData(bullet);
+        bullets_.push_back(bullet);
+    }
 }
 
 void Tank::draw() {
-  super::draw();
-  removeBullets();
-  for (auto bullet : bullets_) {
-    bullet->draw();
-  }
+    super::draw();
+    removeBullets();
+    for (auto bullet : bullets_) {
+        bullet->draw();
+    }
 }
 
 void Tank::removeBullets() {
-  vector<int> indexes_to_remove;
-  for (int i = 0; i < bullets_.size(); i++) {
-    if (!bullets_[i]->body->GetUserData()) {
-      indexes_to_remove.push_back(i);
+    vector<int> indexes_to_remove;
+    for (int i = 0; i < bullets_.size(); i++) {
+        if (!bullets_[i]->body->GetUserData()) {
+            indexes_to_remove.push_back(i);
+        }
     }
-  }
 
-  for (auto i : indexes_to_remove) {
-    bullets_[i]->destroy();
-    bullets_.erase(bullets_.begin() + i);
-  }
+    for (auto i : indexes_to_remove) {
+        bullets_[i]->destroy();
+        bullets_.erase(bullets_.begin() + i);
+    }
 }
