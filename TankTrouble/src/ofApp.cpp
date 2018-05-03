@@ -166,37 +166,7 @@ void ofApp::draw() {
   ofDrawBitmapString(fps, ofGetWidth() - kFpsXPosition, kFpsYPosition);
 
   if (!is_round_over_) {
-    maze_->draw();
-
-    ofSetHexColor(kRed);
-    ofFill();
-    p1_tank_->draw();
-
-    ofSetHexColor(kBlue);
-    ofFill();
-    p2_tank_->draw();
-
-    for (auto powerup : powerups_) {
-      ofSetHexColor(powerup->getColor());
-      ofFill();
-      powerup->draw();
-    }
-
-    ofSetHexColor(kBlack);
-    string p1_status = "P1 Ammo: " + ofToString(p1_tank_->getAmmo()) +
-                       " Health: " + ofToString(p1_tank_->getHealth());
-    string p2_status = "P2 Ammo: " + ofToString(p2_tank_->getAmmo()) +
-                       " Health: " + ofToString(p2_tank_->getHealth());
-    ofDrawBitmapString(p1_status, kP1StatusXPosition,
-                       ofGetHeight() - kP1StatusYPosition);
-    ofDrawBitmapString(p2_status, ofGetWidth() - kP2StatusXPosition,
-                       ofGetHeight() - kP2StatusYPosition);
-
-    if (paused_) {
-      string pause_message =
-          "Press " + ofToString((char)kPause) + " to unpause:";
-      ofDrawBitmapString(pause_message, ofGetWidth() / 2, ofGetHeight() / 2);
-    }
+    drawRound();
   } else {
     string end_message =
         "Press " + ofToString((char)kReset) + " to start the next round:";
@@ -204,6 +174,39 @@ void ofApp::draw() {
     ofDrawBitmapString(end_message, ofGetWidth() / 2, ofGetHeight() / 2);
     reset();
     is_round_over_ = true;
+  }
+}
+
+void ofApp::drawRound() {
+  maze_->draw();
+
+  ofSetHexColor(kRed);
+  ofFill();
+  p1_tank_->draw();
+
+  ofSetHexColor(kBlue);
+  ofFill();
+  p2_tank_->draw();
+
+  for (auto powerup : powerups_) {
+    ofSetHexColor(powerup->getColor());
+    ofFill();
+    powerup->draw();
+  }
+
+  ofSetHexColor(kBlack);
+  string p1_status = "P1 Ammo: " + ofToString(p1_tank_->getAmmo()) +
+                     " Health: " + ofToString(p1_tank_->getHealth());
+  string p2_status = "P2 Ammo: " + ofToString(p2_tank_->getAmmo()) +
+                     " Health: " + ofToString(p2_tank_->getHealth());
+  ofDrawBitmapString(p1_status, kP1StatusXPosition,
+                     ofGetHeight() - kP1StatusYPosition);
+  ofDrawBitmapString(p2_status, ofGetWidth() - kP2StatusXPosition,
+                     ofGetHeight() - kP2StatusYPosition);
+
+  if (paused_) {
+    string pause_message = "Press " + ofToString((char)kPause) + " to unpause:";
+    ofDrawBitmapString(pause_message, ofGetWidth() / 2, ofGetHeight() / 2);
   }
 }
 

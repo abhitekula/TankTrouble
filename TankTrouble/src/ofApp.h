@@ -68,6 +68,8 @@ private:
 
   void updateTanks();
 
+  void drawRound(); //Draws tanks, maze, etc.
+
   void reset();
 
   void removePowerups(); //To remove the powerups that have been used
