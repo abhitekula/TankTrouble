@@ -37,10 +37,10 @@ class Powerup : public ofxBox2dRect {
     const double kNewBulletVelocity = 20;
     const double kNewHealth = 1;
 
-    const string kSpeedFilename = "data/sounds/speed.mp3";
-    const string kAmmoFilename = "data/sounds/ammo.mp3";
-    const string kBulletSpeedFilename = "data/sounds/bullet.mp3";
-    const string kHealthFilename = "data/sounds/health.mp3";
+    const string kSpeedFilename = "/data/sounds/speed.mp3";
+    const string kAmmoFilename = "/data/sounds/ammo.mp3";
+    const string kBulletSpeedFilename = "/data/sounds/bullet.mp3";
+    const string kHealthFilename = "/data/sounds/health.mp3";
 
 private:
     Power type_;

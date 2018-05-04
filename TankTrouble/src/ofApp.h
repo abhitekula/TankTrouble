@@ -29,7 +29,7 @@ class ofApp : public ofBaseApp {
     const int kP2StatusYPosition = 20; //From bottom of screen
 
     const string kDefaultTankFilename = "data/tank.txt";
-    const string kStartupSoundFilename = "data/sounds/startup.mp3";
+    const string kStartupSoundFilename = "/data/sounds/startup.mp3";
     const string kMazeEdgesFilename = "data/mazes/maze";
     const string kMazePositionsFilename = "data/mazes/maze";
     const string kMazeEdgesFilenameSuffix = "Edges.txt";

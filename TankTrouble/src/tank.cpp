@@ -36,6 +36,7 @@ void *Tank::createTank(string file, b2World *world) {
     create(world);
     body->SetLinearDamping(kDamping);
     body->SetAngularDamping(kDamping);
+	return nullptr;
 }
 
 vector <ofPoint> Tank::loadPoints(string file) {

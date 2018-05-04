@@ -8,7 +8,7 @@
 class CollisionDetector : public b2ContactListener {
 
     // Constants
-    const string kBounceSoundFilename = "data/sounds/bounce.mp3";
+    const string kBounceSoundFilename = "/data/sounds/bounce.mp3";
 
 private:
     bool first_contact_ = true;

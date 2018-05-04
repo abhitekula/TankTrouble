@@ -25,9 +25,9 @@ class Tank : public ofxBox2dPolygon {
     const int kBulletSize = 10;
     const double kDamping = 1.5;
 
-    const string kTankHitSoundFilename = "data/sounds/tankHit.mp3";
-    const string kTankDeadSoundFilename = "data/sounds/tankDead.mp3";
-    const string kShootSoundFilename = "data/sounds/shoot.mp3";
+    const string kTankHitSoundFilename = "/data/sounds/tankHit.mp3";
+    const string kTankDeadSoundFilename = "/data/sounds/tankDead.mp3";
+    const string kShootSoundFilename = "/data/sounds/shoot.mp3";
 
 private:
     typedef ofxBox2dPolygon super; // Allows for call to super.draw()
