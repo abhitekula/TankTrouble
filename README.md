@@ -21,11 +21,18 @@ https://github.com/vanderlin/ofxBox2d/tree/stable
 
 4. Once it is done compiling run 'make RunRelease' in the current directory or navigate to the bin/ directory and run the TankTrouble executable.
 
-## If you just want to start playing run the precompiled binary (Tested on linux)
+## If you just want to start playing run the precompiled binary (Linux)
 
 1. Download the zip of the repository and unzip it.
 
 2. Navigate to the TankTrouble/bin/ folder and run the TankTrouble executable.
+
+## If you just want to start playing run the precompiled binary (Windows)
+
+1. Download the zip of the repository and unzip it.
+
+2. Navigate to the TankTrouble/bin/ folder and run TankTrouble.exe
+
 
 ## Instructions
 
