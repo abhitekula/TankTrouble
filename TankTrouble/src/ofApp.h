@@ -11,7 +11,7 @@
 class ofApp : public ofBaseApp {
 
     // Constants
-    const int kFPS = 30;
+    const int kFPS = 60;
     const double kPowerupChance = 3; //Chance that new powerup spawns
 
     const int kBackgroundColor = 0xfdefc2;
@@ -41,11 +41,11 @@ class ofApp : public ofBaseApp {
     const int kP1Right = 'D';
     const int kP1Left = 'A';
     const int kP1Shoot = 'E';
-    const int kP2Forward = OF_KEY_UP;
-    const int kP2Backward = OF_KEY_DOWN;
-    const int kP2Right = OF_KEY_RIGHT;
-    const int kP2Left = OF_KEY_LEFT;
-    const int kP2Shoot = '/'; // OF_KEY_PAGE_DOWN
+    const int kP2Forward = 5;
+    const int kP2Backward = 4;
+    const int kP2Right = 2;
+    const int kP2Left = 0;
+    const int kP2Shoot = 1; // OF_KEY_PAGE_DOWN
     const int kReset = 'R';
     const int kPause = 'P';
 

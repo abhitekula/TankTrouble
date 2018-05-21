@@ -219,6 +219,7 @@ void ofApp::drawRound() {
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key) {
+    cout << key << endl;
     int upper_key = toupper(key); // Standardize on upper case
 
     if (upper_key == kP1Shoot && !is_round_over_ && !paused_) {
@@ -273,10 +274,15 @@ void ofApp::mouseMoved(int x, int y) {}
 void ofApp::mouseDragged(int x, int y, int button) {}
 
 //--------------------------------------------------------------
-void ofApp::mousePressed(int x, int y, int button) {}
+void ofApp::mousePressed(int x, int y, int button) {
+    cout << button << endl;
+    is_key_pressed_[button] = true;
+}
 
 //--------------------------------------------------------------
-void ofApp::mouseReleased(int x, int y, int button) {}
+void ofApp::mouseReleased(int x, int y, int button) {
+    is_key_pressed_[button] = false;
+}
 
 //--------------------------------------------------------------
 void ofApp::mouseEntered(int x, int y) {}
