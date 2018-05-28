@@ -1,4 +1,4 @@
-# CS 126 Final Project Tank Trouble
+# Tank Trouble
 
 ![Image of TankTrouble](TankTrouble/bin/data/tanktrouble.png)
 
